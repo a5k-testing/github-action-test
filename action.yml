@@ -34,4 +34,9 @@ runs:
       run: '"${{ github.action_path }}/shellcheck" --version'
     - name: Execute ShellCheck scan
       shell: bash
-      run: '"${{ github.action_path }}/scan.sh" "${{ github.action_path }}" .'
+      run: |
+        # Execute ShellCheck scan
+        find . -type f -iregex '.*\.sh$\|.*\.bash$' | while read -r FILE; do 
+          echo "Currently scanning: "$FILE"
+          "${{ github.action_path }}/shellcheck" --color=always "$FILE"
+        done
