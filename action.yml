@@ -26,7 +26,6 @@ runs:
         if test -n "${{ inputs.shellcheck-version }}"; then
           scversion="${{ inputs.shellcheck-version }}"
         fi
-        rm -f '/usr/bin/shellcheck'
         wget -qO- "https://github.com/koalaman/shellcheck/releases/download/${scversion?}/shellcheck-${scversion?}.${current_os?}.x86_64.tar.xz" | tar -xJv
         mv -f "./shellcheck-${scversion?}/shellcheck" "${{ github.action_path }}/shellcheck"
         rm -rf "./shellcheck-${scversion?}"
