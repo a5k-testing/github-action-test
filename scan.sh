@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
+shellcheck_path="$1"
 ext_regexp='\.(sh|bash|dash|ksh)$'
 test=123
-which shellcheck
 
 scan_file()  # $1 => File path to scan
 {
   if [[ "$1" =~ ${ext_regexp} ]]; then
     echo "Currently scanning: $1"
-    shellcheck --color=always "$1"
+    "${shellcheck_path}" --color=always "$1"
   fi
 }
 
@@ -27,4 +27,4 @@ scan_folder()  # $1 => Folder path to scan
   fi
 }
 
-scan_folder .
+scan_folder "$2"
