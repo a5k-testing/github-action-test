@@ -30,7 +30,7 @@ scan_folder()  # $1 => Folder path to scan
 
         # Execute ShellCheck scan
         find . -type f -iregex '.*\.sh$\|.*\.bash$' | while read -r FILE; do 
-          echo "Currently scanning: "$FILE"
+          echo "Currently scanning: $FILE"
           "$1/shellcheck" --color=always "$FILE"
         done
 
