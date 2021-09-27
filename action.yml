@@ -29,4 +29,4 @@ runs:
         shellcheck --version
     - name: Execute ShellCheck
       shell: bash
-      run: 'scan.sh'
+      run: "${{ github.action_path }}/scan.sh"
