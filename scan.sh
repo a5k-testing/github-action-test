@@ -4,7 +4,7 @@ ext_regexp='\.(sh|bash|dash|ksh)$'
 
 scan_file()  # $1 => File path to scan
 {
-  if [[ "$1" =~ ${filename_regexp} ]]; then
+  if [[ "$1" =~ ${ext_regexp} ]]; then
     shellcheck "$1"
   fi
 }
