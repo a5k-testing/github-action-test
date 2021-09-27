@@ -2,12 +2,13 @@
 
 ext_regexp='\.(sh|bash|dash|ksh)$'
 test=123
+which shellcheck
 
 scan_file()  # $1 => File path to scan
 {
   if [[ "$1" =~ ${ext_regexp} ]]; then
     echo "Currently scanning: $1"
-    shellcheck "$1"
+    shellcheck --color=always "$1"
   fi
 }
 
