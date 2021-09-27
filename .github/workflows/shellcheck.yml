@@ -1,0 +1,16 @@
+name: Shell Linter
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run ShellCheck
+        uses: a5k-testing/github-action-test@main
