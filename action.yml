@@ -32,7 +32,7 @@ runs:
         rm -rf "./shellcheck-${scversion?}"
     - name: Display ShellCheck version
       shell: bash
-      run: "${{ github.action_path }}/shellcheck" --version
+      run: '"${{ github.action_path }}/shellcheck" --version'
     - name: Execute ShellCheck scan
       shell: bash
-      run: "${{ github.action_path }}/scan.sh" "${{ github.action_path }}" '.'
+      run: '"${{ github.action_path }}/scan.sh" "${{ github.action_path }}" .'
