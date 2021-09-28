@@ -14,7 +14,8 @@
         {
           "regexp": "^\\s*\\^--+\\^?\\s(SC\\d{4,}):\\s(.+)$",
           "code": 1,
-          "message": 2
+          "message": 2,
+          "loop": true
         }
       ]
     }
