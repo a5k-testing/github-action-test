@@ -12,7 +12,7 @@
           "regexp": ""
         },
         {
-          "regexp": "--+\\^?\\s(SC\\d{4,}):\\s(.+?)(\\033[^m]+m)?$",
+          "regexp": "(SC\\d{4}):\\s(.+?)(\\033[^m]+m)?$",
           "code": 1,
           "message": 2,
           "loop": true
