@@ -43,7 +43,7 @@ runs:
       shell: bash {0}
       run: |
         # Execute ShellCheck scan
-        declare -a sc_params
+        sc_params=()
         sc_params+=("--color")
         sc_params+=("-S ${{ inputs.severity }}")
         if test "${{ github.event_name }}" != 'pull_request'; then sc_params+=("-x"); fi
