@@ -3,15 +3,15 @@ author: 'ale5000'
 description: 'GitHub action to execute a lint check of shell scripts using ShellCheck.'
 inputs:
   shellcheck-version:
-    description: 'Specify the version of ShellCheck to use. Possible values: [stable, latest, v0.7.2, etc.] Default: [stable]'
+    description: 'Version of ShellCheck to use. Possible values: [stable, latest, v0.7.2, etc.] Default: [stable]'
     required: false
     default: 'stable'
   severity:
-    description: 'Specify the minimum severity of issues to display. Possible values: [error, warning, info, style] Default: [style]'
+    description: 'Minimum severity of issues to display. Possible values: [error, warning, info, style] Default: [style]'
     required: false
     default: 'style'
-  ignore:
-    description: 'Paths to ignore'
+  ignore-files:
+    description: 'List of files to ignore. Separator: |'
     required: false
 runs:
   using: 'composite'
@@ -45,7 +45,7 @@ runs:
         sc_params+=("-S"); sc_params+=("${{ inputs.severity }}")
         if test "${{ github.event_name }}" != 'pull_request'; then sc_params+=("-x"); fi
 
-        ignore_string="${{ inputs.ignore }}"
+        ignore_string="${{ inputs.ignore-files }}"
         ignore_list=()
         if test -n "$ignore_string"; then
           OLDIFS="$IFS"
