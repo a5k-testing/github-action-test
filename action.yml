@@ -28,12 +28,18 @@ runs:
         rm -rf "./shellcheck-${scversion?}"
     - name: Display ShellCheck version
       shell: bash
-      run: '"${{ github.action_path }}/shellcheck" --version'
+      run: |
+        # Display ShellCheck version
+        "${{ github.action_path }}/shellcheck" --version
     - name: Execute ShellCheck scan
       shell: bash
       run: |
         # Execute ShellCheck scan
-        find . -type f -iregex '.*\.sh$\|.*\.bash$\|.*\.dash$\|.*\.ksh$' | while read -r FILE; do 
-          echo "Currently scanning: $FILE"
-          "${{ github.action_path }}/shellcheck" --color=always -S "${{ inputs.severity }}" -x "$FILE"
+        find . -type f | while read -r FILE; do 
+          FILE="$(echo "$FILE" | tr '[:upper:]' '[:lower:]')"; if expr "$FILE" : '^.*\.\(sh\|bash\|dash\|ksh\)$' 1>/dev/null; then
+            echo "Currently scanning: $FILE"
+            "${{ github.action_path }}/shellcheck" --color=always -S "${{ inputs.severity }}" -x "$FILE"
+          else
+            echo "Skipped: $FILE"
+          fi
         done
