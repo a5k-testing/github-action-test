@@ -2,7 +2,7 @@
   "problemMatcher": [
     {
       "owner": "shellcheck-matcher",
-      "severity": "info",
+      "severity": "debug",
       "pattern": [
         {
           "regexp": "^\\033[^m]+mIn\\s(.+)\\sline\\s(\\d+):\\033[^m]+m$",
