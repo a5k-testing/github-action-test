@@ -32,7 +32,7 @@ runs:
         # Display ShellCheck version
         "${{ github.action_path }}/shellcheck" --version
     - name: Execute ShellCheck scan
-      shell: bash
+      shell: bash {0}
       run: |
         # Execute ShellCheck scan
         find '.' -type f \! -path './.git/*' | while read -r FILE; do
