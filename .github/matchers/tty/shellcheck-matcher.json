@@ -2,6 +2,7 @@
   "problemMatcher": [
     {
       "owner": "shellcheck-matcher",
+      "severity": "error",
       "pattern": [
         {
           "regexp": "^(?:\\033[^m]+m)?In\\s(.+?)\\sline\\s(\\d+):(?:\\033[^m]+m)?$",
