@@ -42,7 +42,7 @@ runs:
       run: |
         # Execute ShellCheck scan
         find '.' -type f \! -path './.git/*' | while read -r FILE; do
-          echo '##########################################################################'
+          echo '################################################################################'
           FILE_LOWER="$(echo "$FILE" | tr '[:upper:]' '[:lower:]')"
           if expr "$FILE_LOWER" : '^.*\.\(sh\|bash\|dash\|ksh\)$' 1>/dev/null || test '#!' = "$(head -c 2 "$FILE")"; then
             echo "Currently scanning: $FILE"
