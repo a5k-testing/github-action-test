@@ -36,7 +36,7 @@ runs:
       run: |
         # Execute ShellCheck scan
         find '.' -type f \! -path './.git/*' | while read -r FILE; do 
-          FILE="$(echo "$FILE" | tr '[:upper:]' '[:lower:]')"; if expr "$FILE" : '^.*\.\(sh\|bash\|dash\|ksh\)$' 1>/dev/null; then
+          FILE="$(echo "$FILE" | tr '[:upper:]' '[:lower:]')"; if expr "$FILE" : '^.*\.\(sh\|bash\|dash\|ksh\)$' 1>/dev/null || test '#!' = "$(head -c 2 "$FILE")"; then
             echo "Currently scanning: $FILE"
             "${{ github.action_path }}/shellcheck" --color=always -S "${{ inputs.severity }}" -x "$FILE"
           else
