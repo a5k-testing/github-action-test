@@ -45,16 +45,13 @@ runs:
         sc_params+=("-S"); sc_params+=("${{ inputs.severity }}")
         if test "${{ github.event_name }}" != 'pull_request'; then sc_params+=("-x"); fi
 
-        ignore_list=()
         ignore_string="${{ inputs.ignore }}"
+        ignore_list=()
         if test -n "$ignore_string"; then
           OLDIFS="$IFS"
           IFS='|'
-          for ELEM in "${ignore_string}"; do
-            ignore_list+=("$ELEM")
-          done
+          read -a ignore_list <<< "${ignore_string}"
           IFS="$OLDIFS"
-          unset ELEM
           echo ${ignore_list[*]}
         fi
 
