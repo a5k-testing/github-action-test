@@ -4,9 +4,9 @@
       "owner": "shellcheck-matcher",
       "pattern": [
         {
-          "regexp": "^(\\033[^m]+m)?In\\s(.+?)\\sline\\s(\\d+):(\\033[^m]+m)?$",
-          "file": 2,
-          "line": 3
+          "regexp": "^(?:\\033[^m]+m)?In\\s(.+?)\\sline\\s(\\d+):(\\033[^m]+m)?$",
+          "file": 1,
+          "line": 2
         },
         {
           "regexp": ""
