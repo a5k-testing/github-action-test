@@ -12,5 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          repository: 'micro5k/microg-unofficial-installer'
+          ref: '153fe1d7627dee2c692095a6188a962492df8f9c'
       - name: Run ShellCheck
         uses: a5k-testing/github-action-test@main
