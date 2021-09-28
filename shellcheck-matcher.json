@@ -21,10 +21,7 @@
       ]
     }
   ]
-}
 
-
-{
   "problemMatcher": [
     {
       "owner": "shellcheck-matcher",
