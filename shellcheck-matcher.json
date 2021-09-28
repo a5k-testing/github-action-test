@@ -1,9 +1,4 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-
-
-{
   "problemMatcher": [
     {
       "owner": "shellcheck-matcher",
@@ -49,8 +44,4 @@
       ]
     }
   ]
-}
-
-
-    ]
 }
