@@ -45,7 +45,7 @@ runs:
         # Execute ShellCheck scan
         sc_params=()
         sc_params+=("--color")
-        sc_params+=("-S ${{ inputs.severity }}")
+        sc_params+=("-S"); sc_params+=("${{ inputs.severity }}")
         if test "${{ github.event_name }}" != 'pull_request'; then sc_params+=("-x"); fi
         find '.' -type f \! -path './.git/*' | while read -r FILE; do
           echo '################################################################################'
