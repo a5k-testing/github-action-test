@@ -18,4 +18,4 @@ jobs:
       - name: Run ShellCheck
         uses: a5k-testing/github-action-test@main
         with:
-          ignore: 'gradlew.bat|.gitlab-ci.yml'
+          ignore-files: 'gradlew|gradlew.bat|.gitlab-ci.yml'
