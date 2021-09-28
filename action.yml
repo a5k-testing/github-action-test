@@ -45,7 +45,7 @@ runs:
           FILE_LOWER="$(echo "$FILE" | tr '[:upper:]' '[:lower:]')"
           if expr "$FILE_LOWER" : '^.*\.\(sh\|bash\|dash\|ksh\)$' 1>/dev/null || test '#!' = "$(head -c 2 "$FILE")"; then
             echo "Currently scanning: $FILE"
-            "${{ github.action_path }}/shellcheck" -S "${{ inputs.severity }}" -x "$FILE" # --color=always
+            "${{ github.action_path }}/shellcheck" --color -S "${{ inputs.severity }}" -x "$FILE"
           else
             echo "Skipped: $FILE"
           fi
