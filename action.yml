@@ -27,13 +27,11 @@ runs:
       shell: bash
       run: |
         # Download ShellCheck
-        event_name="${{ github.event_name }}"
         current_os='linux'
         scversion="${{ inputs.shellcheck-version }}"
-        echo "$event_name"
         wget -qO- "https://github.com/koalaman/shellcheck/releases/download/${scversion?}/shellcheck-${scversion?}.${current_os?}.x86_64.tar.xz" | tar -xJv
         mv -f "./shellcheck-${scversion?}/shellcheck" "${{ github.action_path }}/shellcheck"
-        rm -rf "./shellcheck-${scversion?}"
+        rm -rf "./shellcheck-${scversion?}" 1>/dev/null
     - name: Display ShellCheck version
       shell: bash
       run: |
