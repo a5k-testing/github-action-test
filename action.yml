@@ -20,14 +20,14 @@ runs:
       shell: bash
       run: |
         # Set up matcher...
-        matcher_file="${{ github.action_path }}/tty/shellcheck-matcher-warning.json"
+        matcher_file="${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher.json"
         if test -f "${matcher_file}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher configured.'; fi
-        echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-warning.json"
-        echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-info.json"
+        #echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-warning.json"
+        #echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-info.json"
     - name: Download ShellCheck
       shell: bash
       run: |
-        # Download ShellCheck
+        # Download ShellCheck...
         current_os='linux'
         scversion="${{ inputs.shellcheck-version }}"
         wget -qO- "https://github.com/koalaman/shellcheck/releases/download/${scversion?}/shellcheck-${scversion?}.${current_os?}.x86_64.tar.xz" | tar -xJv 1>/dev/null
@@ -36,12 +36,12 @@ runs:
     - name: Display ShellCheck version
       shell: bash
       run: |
-        # Display ShellCheck version
+        # Display ShellCheck version...
         "${{ github.action_path }}/shellcheck" --version
     - name: Execute ShellCheck scan
       shell: bash {0}
       run: |
-        # Execute ShellCheck scan
+        # Execute ShellCheck scan...
         sc_params=()
         sc_params+=("--color")
         sc_params+=("-S"); sc_params+=("${{ inputs.severity }}")
