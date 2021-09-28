@@ -10,10 +10,9 @@ inputs:
     description: 'Specify the minimum severity of issues to display. Possible values: [error, warning, info, style] Default: [style]'
     required: false
     default: 'style'
-  #ignore:
-    #description: 'Paths to ignore'
-    #required: false
-    #default: ''
+  ignore:
+    description: 'Paths to ignore'
+    required: false
 runs:
   using: 'composite'
   steps:
@@ -45,10 +44,29 @@ runs:
         sc_params+=("--color")
         sc_params+=("-S"); sc_params+=("${{ inputs.severity }}")
         if test "${{ github.event_name }}" != 'pull_request'; then sc_params+=("-x"); fi
+
+        ignore_list=()
+        ignore_string="${{ inputs.ignore }}"
+        if test -n "$ignore_string"; then
+          OLDIFS="$IFS"
+          IFS='|'
+          for ELEM in "${ignore_string}"; do
+            ignore_list+=("$ELEM")
+          done
+          IFS="$OLDIFS"
+        fi
+
         find '.' -type f \! -path './.git/*' | while read -r FILE; do
           echo '################################################################################'
-          FILE_LOWER="$(echo "$FILE" | tr '[:upper:]' '[:lower:]')"
-          if expr "$FILE_LOWER" : '^.*\.\(sh\|bash\|dash\|ksh\)$' 1>/dev/null || test '#!' = "$(head -c 2 "$FILE")"; then
+          FILE_LOWER="$(echo "${FILE}" | tr '[:upper:]' '[:lower:]')"
+          to_ignore=false
+          for ELEM in "${ignore_list[@]}"; do
+            if test "${FILE}" = "./${ELEM}"; then to_ignore=true; break; fi
+          done
+
+          if $to_ignore; then
+            echo "Ignored: $FILE"
+          elif expr "$FILE_LOWER" : '^.*\.\(sh\|bash\|dash\|ksh\)$' 1>/dev/null || test '#!' = "$(head -c 2 "$FILE")"; then
             echo "Currently scanning: $FILE"
             echo "${{ github.action_path }}/shellcheck" "${sc_params[@]}" "$FILE"
             "${{ github.action_path }}/shellcheck" "${sc_params[@]}" "$FILE"
