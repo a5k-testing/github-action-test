@@ -22,7 +22,7 @@ runs:
       run: |
         # Set up matcher
         matcher_file="${{ github.action_path }}/shellcheck-matcher.json"
-        if test -f "$matcher_file"; then echo "::add-matcher::$matcher_file"; fi
+        if test -f "$matcher_file"; then echo "::add-matcher::$matcher_file"; echo 'Matcher configured.'; fi
     - name: Download ShellCheck
       shell: bash
       run: |
