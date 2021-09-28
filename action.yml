@@ -27,8 +27,10 @@ runs:
       shell: bash
       run: |
         # Download ShellCheck
+        event_name="${{ github.event_name }}"
         current_os='linux'
         scversion="${{ inputs.shellcheck-version }}"
+        echo "$event_name"
         wget -qO- "https://github.com/koalaman/shellcheck/releases/download/${scversion?}/shellcheck-${scversion?}.${current_os?}.x86_64.tar.xz" | tar -xJv
         mv -f "./shellcheck-${scversion?}/shellcheck" "${{ github.action_path }}/shellcheck"
         rm -rf "./shellcheck-${scversion?}"
@@ -41,12 +43,16 @@ runs:
       shell: bash {0}
       run: |
         # Execute ShellCheck scan
+        declare -a sc_params
+        sc_params+=("--color")
+        sc_params+=("-S ${{ inputs.severity }}")
+        if test "${{ github.event_name }}" != 'pull_request'; then sc_params+=("-x"); fi
         find '.' -type f \! -path './.git/*' | while read -r FILE; do
           echo '################################################################################'
           FILE_LOWER="$(echo "$FILE" | tr '[:upper:]' '[:lower:]')"
           if expr "$FILE_LOWER" : '^.*\.\(sh\|bash\|dash\|ksh\)$' 1>/dev/null || test '#!' = "$(head -c 2 "$FILE")"; then
             echo "Currently scanning: $FILE"
-            "${{ github.action_path }}/shellcheck" --color -S "${{ inputs.severity }}" -x "$FILE"
+            "${{ github.action_path }}/shellcheck" "${sc_params[@]}" "$FILE"
           else
             echo "Skipped: $FILE"
           fi
