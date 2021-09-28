@@ -17,6 +17,12 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Set up matcher
+      shell: bash
+      run: |
+        # Set up matcher
+        matcher_file="${{ github.action_path }}/shellcheck-matcher.json"
+        if test -f "$matcher_file"; then echo "::add-matcher::$matcher_file"; fi
     - name: Download ShellCheck
       shell: bash
       run: |
