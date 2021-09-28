@@ -54,6 +54,8 @@ runs:
             ignore_list+=("$ELEM")
           done
           IFS="$OLDIFS"
+          unset ELEM
+          echo ${ignore_list[*]}
         fi
 
         find '.' -type f \! -path './.git/*' | while read -r FILE; do
@@ -61,8 +63,8 @@ runs:
           FILE_LOWER="$(echo "${FILE}" | tr '[:upper:]' '[:lower:]')"
           to_ignore=false
           for ELEM in "${ignore_list[@]}"; do
-            echo "${FILE} - ${ELEM}"
-            if [[ "${FILE}" == *"/${ELEM}" ]]; then to_ignore=true; break; fi
+            echo "${FILE} - /${ELEM}"
+            if [[ *"${FILE}" == "/${ELEM}" ]]; then to_ignore=true; break; fi
           done
 
           if $to_ignore; then
