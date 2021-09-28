@@ -61,6 +61,7 @@ runs:
           FILE_LOWER="$(echo "${FILE}" | tr '[:upper:]' '[:lower:]')"
           to_ignore=false
           for ELEM in "${ignore_list[@]}"; do
+            echo "${FILE} - ${ELEM}"
             if [[ "${FILE}" == *"/${ELEM}" ]]; then to_ignore=true; break; fi
           done
 
