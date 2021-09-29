@@ -23,3 +23,4 @@ jobs:
          body: 'Automated changes by a [GitHub Action](https://github.com/marketplace/actions/action-update-docs-action)'
          commit-message: 'Auto-update action documentation'
          branch: 'auto-update-doc/patch'
+         delete-branch: 'true'
