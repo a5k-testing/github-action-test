@@ -33,10 +33,16 @@ runs:
       shell: bash
       run: |
         # Download ShellCheck...
-        case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; *) current_os='error'; esac
-        scversion="${{ inputs.shellcheck-version }}"
-        wget -qO- "https://github.com/koalaman/shellcheck/releases/download/${scversion?}/shellcheck-${scversion?}.${current_os?}.x86_64.tar.xz" | tar -xJv 1>/dev/null
-        mv -f "./shellcheck-${scversion?}/shellcheck" "${{ github.action_path }}/shellcheck"
+        sc_ver="${{ inputs.shellcheck-version }}"
+        base_url='https://github.com/koalaman/shellcheck/releases/download/${sc_ver?}/shellcheck-${sc_ver?}'
+        case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) exit 1; esac
+
+        if test "${current_os}" = 'win' then
+          wget -qO- "${base_url?}.zip" | unzip -oj -d"./shellcheck-${scversion?}/" || exit 2
+        else
+          wget -qO- "${base_url?}.${current_os?}.x86_64.tar.xz" | tar -xJv 1>/dev/null || exit 2
+        fi
+        mv -f "./shellcheck-${scversion?}/shellcheck"* "${{ github.action_path }}/"
         rm -rf "./shellcheck-${scversion?}"
     - name: Display ShellCheck version
       shell: bash
