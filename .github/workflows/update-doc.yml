@@ -16,3 +16,7 @@ jobs:
         uses: npalm/action-docs-action@v1.1.0
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
+        with:
+         author: 'ale5000 <15793015+ale5000-git@users.noreply.github.com>'
+         title: 'Auto-update action documentation'
+         commit-message: 'Auto-update action documentation'
