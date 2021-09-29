@@ -14,7 +14,7 @@ GitHub action to execute a lint check of shell scripts using ShellCheck.
 | - | - | - | - |
 | shellcheck-version | Version of ShellCheck to use. Values: [stable, latest, v0.7.2, etc.]. Default: [stable] | `false` | stable |
 | severity | Minimum severity of issues to display. Values: [error, warning, info, style]. Default: [style] | `false` | style |
-| ignore-files | List of files to ignore, the separator is | | `false` |  |
+| ignore-files | List of files to ignore, the separator is &#124; | `false` |  |
 
 
 
