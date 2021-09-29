@@ -29,6 +29,10 @@ runs:
         # Set up matcher...
         matcher_file="${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher.json"
         if test -f "${matcher_file}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher configured.'; fi
+    - name: Install wget
+      if: runner.os == 'Windows'
+      shell: cmd
+      run: choco install --no-progress --yes ripgrep msys2
     - name: Download ShellCheck
       shell: bash
       run: |
@@ -38,7 +42,7 @@ runs:
         case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) exit 1; esac
 
         if test "${current_os}" = 'win'; then
-          "${HOMEDRIVE?}/msys64/usr/bin/wget" -qO- "${base_url?}.zip" || exit 2
+          wget -qO- "${base_url?}.zip" || exit 2
           unzip -ojq -d"./shellcheck-${sc_ver?}/" "shellcheck-${sc_ver?}.zip" || exit 3
         else
           wget -qO- "${base_url?}.${current_os?}.x86_64.tar.xz" | tar -xJv 1>/dev/null || exit 2
