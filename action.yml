@@ -2,34 +2,35 @@
 # SPDX-License-Identifer: LGPL-3.0-or-later
 # SPDX-FileType: SOURCE
 
-name: 'Test'
-author: 'ale5000'
-description: 'GitHub action to execute a lint check of shell scripts using ShellCheck.'
+name: "Test"
+author: "ale5000"
+description: "GitHub action to execute a lint check of shell scripts using ShellCheck."
 branding:
-  color: 'green'
+  icon: "check-circle"
+  color: "green"
 
 inputs:
   shellcheck-version:
-    description: 'Version of ShellCheck to use. Values: [stable, latest, v0.7.2, etc.]. Default: [stable]'
+    description: "Version of ShellCheck to use. Values: [stable, latest, v0.7.2, etc.]. Default: [stable]"
     required: false
-    default: 'stable'
+    default: "stable"
   severity:
-    description: 'Minimum severity of issues to display. Values: [error, warning, info, style]. Default: [style]'
+    description: "Minimum severity of issues to display. Values: [error, warning, info, style]. Default: [style]"
     required: false
-    default: 'style'
+    default: "style"
   ignore-files:
-    description: 'List of files to ignore, the separator is |'
+    description: "List of files to ignore, the separator is |"
     required: false
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
-    - name: Set up matcher
+    - name: "Set up matcher"
       shell: bash
       run: |
-        # Set up matcher...
+        # Setting up matcher...
         matcher_file="${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher.json"
         if test -f "${matcher_file}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher configured.'; fi
-    - name: Download ShellCheck
+    - name: "Download ShellCheck"
       shell: bash
       run: |
         # Downloading ShellCheck...
@@ -52,12 +53,12 @@ runs:
         fi
         mv -f "./shellcheck-${sc_ver?}/shellcheck"* "${action_path?}/" || annotate_error 5 53
         rm -f "./${archive_name?}"; rm -rf "./shellcheck-${sc_ver?}"
-    - name: Display ShellCheck version
+    - name: "Display ShellCheck version"
       shell: bash
       run: |
         # Displaying ShellCheck version...
         "${{ github.action_path }}/shellcheck" --version
-    - name: Execute ShellCheck scan
+    - name: "Execute ShellCheck scan"
       shell: bash {0}
       run: |
         # Executing ShellCheck scan...
