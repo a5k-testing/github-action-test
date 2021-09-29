@@ -45,7 +45,7 @@ runs:
         base_url="https://github.com/koalaman/shellcheck/releases/download/${sc_ver?}/"
         if test "${current_os}" = 'win'; then archive_name="shellcheck-${sc_ver?}.zip"; else archive_name="shellcheck-${sc_ver?}.${current_os?}.x86_64.tar.xz"; fi
 
-        annotate_error "$LINENO" 90
+        annotate_error '48' 90
         ## Installing wget (only on Windows)...
         if test "${current_os}" = 'win'; then choco install --no-progress --yes wget 1>/dev/null || exit 2; fi
 
