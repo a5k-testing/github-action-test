@@ -38,9 +38,9 @@ runs:
         case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) exit 1; esac
 
         if test "${current_os}" = 'win'; then
-          "${HOMEDRIVE?}/msys64/usr/bin/wget" -qO- "${base_url?}.zip" | unzip -oj -d"./shellcheck-${sc_ver?}/" || exit 2
+          "${HOMEDRIVE?}/msys64/usr/bin/wget" -qO- "${base_url?}.zip" | unzip -o -j -d"./shellcheck-${sc_ver?}/" - || exit 2
         else
-          wget -qO- "${base_url?}.${current_os?}.x86_64.tar.xz" | tar -xJv 1>/dev/null || exit 2
+          wget -qO- "${base_url?}.${current_os?}.x86_64.tar.xz" | tar -xJv 1>/dev/null #|| exit 2
         fi
         mv -f "./shellcheck-${sc_ver?}/shellcheck"* "${{ github.action_path }}/"
         rm -rf "./shellcheck-${sc_ver?}"
