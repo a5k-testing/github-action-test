@@ -33,7 +33,7 @@ runs:
       shell: bash
       run: |
         # Downloading ShellCheck...
-        annotate_error() { echo "::error file=action.yml,line=$2,col=1,endColumn=3::Error $1"; exit "$1"; }
+        annotate_error() { echo "::error file=action.yml,line=$2,col=1,endColumn=50::Error $1 on line $2"; exit "$1"; }
 
         case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) annotate_error 1 38; esac
         action_path="${{ github.action_path }}"
@@ -50,7 +50,7 @@ runs:
         else
           tar –xJf "${archive_name?}" || annotate_error 4 51
         fi
-        mv -f x"./shellcheck-${sc_ver?}/shellcheck"* "${action_path?}/" || annotate_error 5 53
+        mv -f "./shellcheck-${sc_ver?}/shellcheck"* "${action_path?}/" || annotate_error 5 53
         rm -f "./${archive_name?}"; rm -rf "./shellcheck-${sc_ver?}"
     - name: Display ShellCheck version
       shell: bash
