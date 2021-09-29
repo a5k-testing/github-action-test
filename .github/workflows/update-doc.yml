@@ -1,0 +1,16 @@
+name: Docs
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Action update docs action
+        uses: npalm/action-docs-action@v1.1.0
