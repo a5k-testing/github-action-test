@@ -44,7 +44,7 @@ runs:
 
         if test "${current_os}" = 'win'; then
           wget -qO- "${base_url?}.zip" || exit 2
-          unzip -ojq -d"./shellcheck-${sc_ver?}/" "shellcheck-${sc_ver?}.zip" || exit 3
+          unzip -ojq "shellcheck-${sc_ver?}.zip" '*' -d "./shellcheck-${sc_ver?}/" || exit 3
         else
           wget -qO- "${base_url?}.${current_os?}.x86_64.tar.xz" | tar -xJv 1>/dev/null || exit 2
         fi
