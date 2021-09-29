@@ -10,15 +10,15 @@ branding:
 
 inputs:
   shellcheck-version:
-    description: 'Version of ShellCheck to use. Possible values: [stable, latest, v0.7.2, etc.] Default: [stable]'
+    description: 'Version of ShellCheck to use. Values: [stable, latest, v0.7.2, etc.]. Default: [stable]'
     required: false
     default: 'stable'
   severity:
-    description: 'Minimum severity of issues to display. Possible values: [error, warning, info, style] Default: [style]'
+    description: 'Minimum severity of issues to display. Values: [error, warning, info, style]. Default: [style]'
     required: false
     default: 'style'
   ignore-files:
-    description: 'List of files to ignore. Separator: |'
+    description: 'List of files to ignore, the separator is |'
     required: false
 runs:
   using: 'composite'
