@@ -48,7 +48,7 @@ runs:
         if test "${current_os}" = 'win'; then
           unzip -ojq "${archive_name?}" '*' -d "./shellcheck-${sc_ver?}/" || annotate_error 4 49
         else
-          tar –xJf "${archive_name?}" || annotate_error 4 51
+          tar -xf "${archive_name?}" || annotate_error 4 51
         fi
         mv -f "./shellcheck-${sc_ver?}/shellcheck"* "${action_path?}/" || annotate_error 5 53
         rm -f "./${archive_name?}"; rm -rf "./shellcheck-${sc_ver?}"
