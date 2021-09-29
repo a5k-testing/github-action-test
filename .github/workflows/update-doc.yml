@@ -18,5 +18,8 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
          author: 'ale5000 <15793015+ale5000-git@users.noreply.github.com>'
+         signoff: 'true'
          title: 'Auto-update action documentation'
+         body: 'Automated changes by a [GitHub Action](https://github.com/marketplace/actions/action-update-docs-action)'
          commit-message: 'Auto-update action documentation'
+         branch: 'auto-update-doc/patch'
