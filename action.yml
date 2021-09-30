@@ -45,7 +45,6 @@ runs:
 
         ## Installing wget (only on Windows)...
         if test "${current_os}" = 'win'; then choco install --no-progress --yes wget 1>/dev/null || annotate_error 2; fi
-        annotate_error 250
 
         wget -q -O "${archive_name?}" "${base_url?}${archive_name?}" || annotate_error 3
         if test "${current_os}" = 'win'; then
