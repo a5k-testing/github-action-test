@@ -2,7 +2,6 @@
   "problemMatcher": [
     {
       "owner": "shellcheck-matcher-colors",
-      "severity": "note",
       "pattern": [
         {
           "regexp": "^\\033[^m]+mIn (.+?) line (\\d+):\\033[^m]+m$",
