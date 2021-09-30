@@ -108,5 +108,5 @@ runs:
         find '.' -type f \! -path './.git/*' | LC_ALL=C sort | scan_files; files_with_issues="$?"
 
         printf '################################################################################\n\n'
-        echo "Files with issues: ${files_with_issues}"
+        echo "::notice::Files with issues: ${files_with_issues}"
         exit "${files_with_issues}"
