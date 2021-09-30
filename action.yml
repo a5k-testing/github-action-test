@@ -62,6 +62,7 @@ runs:
       shell: bash {0}
       run: |
         # Executing ShellCheck scan...
+        export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
         sc_params=()
         sc_params+=("--color")
         sc_params+=("-S"); sc_params+=("${{ inputs.severity }}")
