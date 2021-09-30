@@ -35,12 +35,17 @@ runs:
       run: |
         # Downloading ShellCheck...
         annotate_error() { echo "::error::Error $1 in action.yml on line $2"; exit "$1"; }
+function log() {
+    echo "LINENO: ${LINENO}"
+    echo "BASH_LINENO: ${BASH_LINENO[0]}"
+}
 
         case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) annotate_error 1 39; esac
         action_path="${{ github.action_path }}"
         sc_ver="${{ inputs.shellcheck-version }}"
         base_url="https://github.com/koalaman/shellcheck/releases/download/${sc_ver?}/"
         if test "${current_os}" = 'win'; then archive_name="shellcheck-${sc_ver?}.zip"; else archive_name="shellcheck-${sc_ver?}.${current_os?}.x86_64.tar.xz"; fi
+log
 
         ## Installing wget (only on Windows)...
         if test "${current_os}" = 'win'; then choco install --no-progress --yes wget 1>/dev/null || annotate_error 2 46; fi
