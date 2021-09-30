@@ -1,9 +1,6 @@
-name: Shell Linter Windows
+name: SC Windows
 
-on:
-  push:
-    branches:
-    - main
+on: [push, pull_request]
 
 jobs:
   lint:
