@@ -76,6 +76,7 @@ runs:
           IFS="$OLDIFS"
         fi
 
+        files_with_issues='0'
         find '.' -type f \! -path './.git/*' | while read -r FILE; do
           echo '################################################################################'
           FILE_LOWER="$(echo "${FILE}" | tr '[:upper:]' '[:lower:]')"
@@ -93,7 +94,11 @@ runs:
             else
               "${{ github.action_path }}/shellcheck" "${sc_params[@]}" "$FILE"
             fi
+            if test "$?" -ne "0"; then files_with_issues="$((files_with_issues+1))"; fi
           else
             echo "Skipped: $FILE"
           fi
         done
+
+        echo "Files with issues: ${files_with_issues}"
+        exit "${files_with_issues}"
