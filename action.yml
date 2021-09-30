@@ -107,7 +107,7 @@ runs:
         }
         find '.' -type f \! -path './.git/*' | LC_ALL=C sort | scan_files; files_with_issues="$?"
 
-        printf '################################################################################\n\n'; files_with_issues=0
+        printf '################################################################################\n\n'
         if test "${files_with_issues}" -gt '0'; then
           printf "::error::[ShellChecker] FILES WITH ISSUES: ${files_with_issues} 🐛\n"
         else
