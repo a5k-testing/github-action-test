@@ -59,7 +59,7 @@ runs:
         # Displaying ShellCheck version...
         "${{ github.action_path }}/shellcheck" --version
     - name: "Execute ShellCheck scan"
-      shell: bash
+      shell: bash {0}
       run: |
         # Executing ShellCheck scan...
         sc_params=()
