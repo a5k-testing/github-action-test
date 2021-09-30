@@ -112,6 +112,7 @@ runs:
           printf "::error::[ShellChecker] FILES WITH ISSUES: ${files_with_issues} 🐛\n"
         else
           info_msg="[ShellChecker] FILES WITH ISSUES: ${files_with_issues} ✅"
-          printf "::notice::${info_msg}\r\033[32m${info_msg}\n"
+          printf "::notice::${info_msg}" > /dev/null
+          printf "\033[32m${info_msg}\n"
         fi
         exit "${files_with_issues}"
