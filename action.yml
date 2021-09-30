@@ -111,7 +111,7 @@ runs:
         if test "${files_with_issues}" -gt '0'; then
           printf "::error::[ShellChecker] FILES WITH ISSUES: ${files_with_issues} 🐛\n"
         else
-          printf "::notice::[ShellChecker] FILES WITH ISSUES: ${files_with_issues} ✅\r"
-          printf "\033[32m[ShellChecker] FILES WITH ISSUES: ${files_with_issues} ✅\n"
+          info_msg="[ShellChecker] FILES WITH ISSUES: ${files_with_issues} ✅"
+          printf "::notice::${info_msg}\r\033[32m${info_msg}\n"
         fi
         exit "${files_with_issues}"
