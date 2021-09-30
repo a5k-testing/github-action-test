@@ -1,9 +1,6 @@
 name: Shell Linter
 
-on:
-  push:
-    branches:
-    - main
+on: [push, pull_request]
 
 jobs:
   lint:
