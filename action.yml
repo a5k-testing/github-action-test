@@ -35,28 +35,25 @@ runs:
       run: |
         # Downloading ShellCheck...
         BASE_LINE="37"
-        annotate_error() { echo "::error::Error $1 in action.yml on line $2"; exit "$1"; }
-        function log() {
-          echo "BASH_LINENO:" $(("${BASH_LINENO[0]}"+"${BASE_LINE}-2"))
-        }
+        annotate_error() { LINE="$(("${BASH_LINENO[0]}"+"${BASE_LINE}"-2))"; echo "::error::Error $1 in action.yml at line ${BASE_LINE}"; exit "$1"; }
 
-        case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) annotate_error 1 39; esac
+        case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) annotate_error 1; esac
         action_path="${{ github.action_path }}"
         sc_ver="${{ inputs.shellcheck-version }}"
         base_url="https://github.com/koalaman/shellcheck/releases/download/${sc_ver?}/"
         if test "${current_os}" = 'win'; then archive_name="shellcheck-${sc_ver?}.zip"; else archive_name="shellcheck-${sc_ver?}.${current_os?}.x86_64.tar.xz"; fi
-        log ################
 
         ## Installing wget (only on Windows)...
-        if test "${current_os}" = 'win'; then choco install --no-progress --yes wget 1>/dev/null || annotate_error 2 46; fi
+        if test "${current_os}" = 'win'; then choco install --no-progress --yes wget 1>/dev/null || annotate_error 2; fi
+        annotate_error 250
 
-        wget -q -O "${archive_name?}" "${base_url?}${archive_name?}" || annotate_error 3 48
+        wget -q -O "${archive_name?}" "${base_url?}${archive_name?}" || annotate_error 3
         if test "${current_os}" = 'win'; then
-          unzip -ojq "${archive_name?}" '*' -d "./shellcheck-${sc_ver?}/" || annotate_error 4 50
+          unzip -ojq "${archive_name?}" '*' -d "./shellcheck-${sc_ver?}/" || annotate_error 4
         else
-          tar -xf "${archive_name?}" || annotate_error 4 52
+          tar -xf "${archive_name?}" || annotate_error 4
         fi
-        mv -f "./shellcheck-${sc_ver?}/shellcheck"* "${action_path?}/" || annotate_error 5 54
+        mv -f "./shellcheck-${sc_ver?}/shellcheck"* "${action_path?}/" || annotate_error 5
         rm -f "./${archive_name?}"; rm -rf "./shellcheck-${sc_ver?}"
     - name: "Display ShellCheck version"
       shell: bash
