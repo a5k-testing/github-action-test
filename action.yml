@@ -34,10 +34,10 @@ runs:
       shell: bash
       run: |
         # Downloading ShellCheck...
+        BASE_LINE="${LINENO}"
         annotate_error() { echo "::error::Error $1 in action.yml on line $2"; exit "$1"; }
         function log() {
-        echo "LINENO: ${LINENO}"
-        echo "BASH_LINENO: ${BASH_LINENO[0]}"
+          echo "BASH_LINENO: ((${BASH_LINENO[0]}+${BASE_LINE}))"
         }
 
         case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) annotate_error 1 39; esac
