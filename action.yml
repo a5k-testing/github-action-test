@@ -72,11 +72,12 @@ runs:
         if test -n "$ignore_string"; then
           OLDIFS="$IFS"
           IFS='|'
-          read -a ignore_list <<< "${ignore_string}"
+          read -ra ignore_list <<< "${ignore_string}"
           IFS="$OLDIFS"
         fi
 
         files_with_issues='0'
+        export files_with_issues
         find '.' -type f \! -path './.git/*' | while read -r FILE; do
           echo '################################################################################'
           FILE_LOWER="$(echo "${FILE}" | tr '[:upper:]' '[:lower:]')"
