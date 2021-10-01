@@ -14,5 +14,5 @@ jobs:
           repository: 'micro5k/microg-unofficial-installer'
       - name: YAML Lint
         uses: ibiqlik/action-yamllint@v3
-        with:
-          format: github
+        # with:
+          # format: github
