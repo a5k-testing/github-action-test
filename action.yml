@@ -28,8 +28,11 @@ runs:
       shell: bash
       run: |
         # Setting up matcher...
-        matcher_file="${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher.json"
-        if test -f "${matcher_file}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher configured.'; fi
+        matcher_file="${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-colors.json"
+        #if test -f "${matcher_file}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher configured.'; fi
+        echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-colors-warning.json"; echo 'Matcher configured.'
+        echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-colors-notice.json"; echo 'Matcher configured.'
+        #echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-colors.json"; echo 'Matcher configured.'
     - name: "Download ShellCheck"
       shell: bash
       run: |
