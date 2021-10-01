@@ -1,11 +1,11 @@
 {
   "problemMatcher": [
     {
-      "owner": "shellcheck-matcher-info",
-      "severity": "warning",
+      "owner": "shellcheck-matcher-colors-notice",
+      "severity": "notice",
       "pattern": [
         {
-          "regexp": "^\\033[^m]+mIn\\s(.+)\\sline\\s(\\d+):\\033[^m]+m$",
+          "regexp": "^\\033[^m]+mIn (.+?) line (\\d+):\\033[^m]+m$",
           "file": 1,
           "line": 2
         },
@@ -13,7 +13,7 @@
           "regexp": ""
         },
         {
-          "regexp": "^\\033\\[32m[^-]*-+\\^?\\s(SC\\d{4}):\\s(.+)\\033[^m]+m$",
+          "regexp": "^\\033\\[32[^S]+(SC\\d{4}): (.+)\\033[^m]+m$",
           "code": 1,
           "message": 2,
           "loop": true
