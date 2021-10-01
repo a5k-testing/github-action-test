@@ -1,7 +1,7 @@
 {
   "problemMatcher": [
     {
-      "owner": "shellcheck-matcher-colors-warning",
+      "owner": "shellcheck-matcher-color-warning",
       "severity": "warning",
       "pattern": [
         {
