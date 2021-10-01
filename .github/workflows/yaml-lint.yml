@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          repository: 'micro5k/microg-unofficial-installer'
       - name: YAML Lint
         uses: ibiqlik/action-yamllint@v3
         with:
