@@ -30,10 +30,10 @@ runs:
       run: |
         # Setting up matcher...
         matcher_file="${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-colors.json"
-        #if test -f "${matcher_file}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher configured.'; fi
-        echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-color-error.json"; echo 'Matcher configured.'
-        echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-color-warning.json"; echo 'Matcher configured.'
-        echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-color-notice.json"; echo 'Matcher configured.'
+        if test -f "${matcher_file}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher configured.'; fi
+        #echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-color-error.json"; echo 'Matcher configured.'
+        #echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-color-warning.json"; echo 'Matcher configured.'
+        #echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-color-notice.json"; echo 'Matcher configured.'
 
     - name: "Download ShellCheck"
       shell: bash
