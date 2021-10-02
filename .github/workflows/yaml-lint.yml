@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          repository: 'micro5k/microg-unofficial-installer'
+          repository: 'a5k-actions/shellchecker'
       - name: YAML Lint
         uses: ibiqlik/action-yamllint@v3
         # with:
