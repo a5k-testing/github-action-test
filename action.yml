@@ -100,9 +100,9 @@ runs:
             elif expr "$FILE_LOWER" : '^.*\.\(sh\|bash\|ash\|dash\|ksh\)$' 1>/dev/null || test '#!' = "$(head -c 2 "$FILE")"; then
               echo "Currently scanning: $FILE"
               if test "${{ runner.os }}" = 'Windows'; then
-                "${{ github.action_path }}/shellcheck" "${sc_params[@]}" "$FILE" | tr -d '\r' | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\1\t/"; STATUS="$?"
+                "${{ github.action_path }}/shellcheck" "${sc_params[@]}" "$FILE" | tr -d '\r' | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\t\1/"; STATUS="$?"
               else
-                "${{ github.action_path }}/shellcheck" "${sc_params[@]}" "$FILE" | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\1\t/"; STATUS="$?"
+                "${{ github.action_path }}/shellcheck" "${sc_params[@]}" "$FILE" | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\t\1/"; STATUS="$?"
               fi
               if test "${STATUS}" -ne 0; then files_with_issues="$((files_with_issues+1))"; fi
             else
