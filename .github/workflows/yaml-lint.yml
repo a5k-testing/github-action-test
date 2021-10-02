@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          repository: 'a5k-actions/shellchecker'
+        # with:
+          # repository: 'a5k-actions/shellchecker'
       - name: YAML Lint
         uses: ibiqlik/action-yamllint@v3
         # with:
