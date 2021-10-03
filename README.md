@@ -26,8 +26,8 @@ GitHub action to execute a lint check of shell scripts using ShellCheck.
 
 | parameter | description |
 | - | - |
-| numFilesWithIssues |  |
-| pathFilesWithIssues |  |
+| num-files-wth-issues |  |
+| path-files-with-issues |  |
 
 
 
