@@ -120,23 +120,22 @@ runs:
           done
 
           echo "::set-output name=numfileswithissues::${files_with_issues}"
-          echo "::set-output name=pathfileswithissues::${path_of_files_with_issues[@]}"
-          unset path_of_files_with_issues
-          return "${files_with_issues}"
+          echo "::set-output name=pathfileswithissues::${path_of_files_with_issues[@]}"; unset path_of_files_with_issues
         }
-        find '.' -type f \! -path './.git/*' | LC_ALL=C sort | scan_files; files_with_issues="$?"
-
-        printf '################################################################################\n\n'
-        if test "${files_with_issues}" -gt '0'; then
-          printf "::error::[ShellChecker] FILES WITH ISSUES: ${files_with_issues} 🐛\n"
-        else
-          printf "::notice::[ShellChecker] FILES WITH ISSUES: ${files_with_issues} ✅\n"
-          printf "\033[32mAll is good!\n"
-        fi
-        exit "${files_with_issues}"
+        find '.' -type f \! -path './.git/*' | LC_ALL=C sort | scan_files
     - name: "Display ShellCheck summary"
       shell: bash
       run: |
         # Displaying ShellCheck summary...
-        echo "Number of files with issues: ${{ outputs.num-files-wth-issues }}"
-        echo "List of files with issues: ${{ outputs.path-files-with-issues }}"
+        num_files_with_issues="${{ steps.shellcheck-scan.outputs.numfileswithissues }}"
+        list_files_with_issues="${{ steps.shellcheck-scan.outputs.pathfileswithissues }}"
+
+        printf '################################################################################\n\n'
+        if test "${num_files_with_issues}" -gt '0'; then
+          echo "::error::[ShellChecker] NUMBER OF FILES WITH ISSUES: ${num_files_with_issues} 🐛"
+          echo "List of files with issues: ${list_files_with_issues}"
+        else
+          echo "::notice::[ShellChecker] NUMBER OF FILES WITH ISSUES: ${num_files_with_issues} ✅"
+          printf "\033[32mAll is good!\n"
+        fi
+        exit "${num_files_with_issues}"
