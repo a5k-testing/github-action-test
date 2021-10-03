@@ -134,3 +134,9 @@ runs:
           printf "\033[32mAll is good!\n"
         fi
         exit "${files_with_issues}"
+    - name: "Display ShellCheck summary"
+      shell: bash
+      run: |
+        # Displaying ShellCheck summary...
+        echo "Number of files with issues: ${{ outputs.num-files-wth-issues }}"
+        echo "List of files with issues: ${{ outputs.path-files-with-issues }}"
