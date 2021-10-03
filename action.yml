@@ -69,6 +69,7 @@ runs:
       run: |
         # Executing ShellCheck scan...
         sc_params=()
+        sc_params+=("--enable=all")
         sc_params+=("--color")
         sc_params+=("-S"); sc_params+=("${{ inputs.severity }}")
         if test "${{ github.event_name }}" != 'pull_request'; then sc_params+=("-x"); fi
