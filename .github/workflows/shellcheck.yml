@@ -16,6 +16,6 @@ jobs:
       - name: Run ShellCheck
         uses: a5k-testing/github-action-test@main
         with:
-          shellcheck-version: "0.7.1"
+          shellcheck-version: "v0.7.1"
           enable-all-opt-checks: "true"
           ignore-files: "gradlew|.gitlab-ci.yml"
