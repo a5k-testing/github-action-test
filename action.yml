@@ -11,7 +11,7 @@ branding:
   color: "green"
 
 inputs:
-  shellcheckVersion:
+  shellcheck-version:
     description: "Version of ShellCheck to use. Values: [stable, latest, v0.7.2, etc.]."
     required: false
     default: "stable"
@@ -19,7 +19,7 @@ inputs:
     description: "Minimum severity of issues to display. Values: [error, warning, info, style]."
     required: false
     default: "style"
-  enableAllOptionalChecks:
+  enable-all-opt-checks:
     description: ""
     required: false
     default: "false"
@@ -55,7 +55,7 @@ runs:
 
         case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) annotate_error 1; esac
         action_path="${{ github.action_path }}"
-        sc_ver="${{ inputs.shellcheckVersion }}"
+        sc_ver="${{ inputs.shellcheck-version }}"
         base_url="https://github.com/koalaman/shellcheck/releases/download/${sc_ver?}/"
         if test "${current_os}" = 'win'; then archive_name="shellcheck-${sc_ver?}.zip"; else archive_name="shellcheck-${sc_ver?}.${current_os?}.x86_64.tar.xz"; fi
 
@@ -81,7 +81,7 @@ runs:
       run: |
         # Executing ShellCheck scan...
         SHELLCHECK_OPTS="--color --severity=${{ inputs.severity }}"
-        if test "${{ inputs.enableAllOptionalChecks }}" != 'false'; then SHELLCHECK_OPTS+=" --enable=all"; fi
+        if test "${{ inputs.enable-all-opt-checks }}" != 'false'; then SHELLCHECK_OPTS+=" --enable=all"; fi
         if test "${{ github.event_name }}" != 'pull_request'; then SHELLCHECK_OPTS+=" -x"; fi
         export SHELLCHECK_OPTS
 
