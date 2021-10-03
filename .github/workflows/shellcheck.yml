@@ -21,8 +21,10 @@ jobs:
           enable-all-opt-checks: "true"
           ignore-files: "gradlew|.gitlab-ci.yml"
       - name: Display number of files with issues
+        shell: bash
         run: |
           echo "${{steps.shellcheck-run.outputs.num-files-wth-issues}}"
       - name: Display path of files with issues
+        shell: bash
         run: |
           echo "${{steps.shellcheck-run.outputs.path-files-with-issues}}"
