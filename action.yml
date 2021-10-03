@@ -42,15 +42,11 @@ runs:
         # Setting up matcher...
         matcher_file="${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-colors.json"
         if test -f "${matcher_file}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher configured.'; fi
-        #echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-color-error.json"; echo 'Matcher configured.'
-        #echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-color-warning.json"; echo 'Matcher configured.'
-        #echo "::add-matcher::${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-color-notice.json"; echo 'Matcher configured.'
-
     - name: "Download ShellCheck"
       shell: bash
       run: |
         # Downloading ShellCheck...
-        BASE_LINE='42'
+        BASE_LINE='49'
         annotate_error() { LINE="$(("${BASH_LINENO[0]}"+"${BASE_LINE}"-2))"; echo "::error::Error $1 in action.yml at line ${LINE}"; exit "$1"; }
 
         case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) annotate_error 1; esac
