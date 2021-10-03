@@ -18,6 +18,7 @@ GitHub action to execute a lint check of shell scripts using ShellCheck.
 | ignore-files | List of files to ignore, the separator is | | `false` |  |
 
 
+
 <!-- action-docs-inputs -->
 
 <!-- action-docs-outputs -->
@@ -27,6 +28,7 @@ GitHub action to execute a lint check of shell scripts using ShellCheck.
 | - | - |
 | numFilesWithIssues |  |
 | pathFilesWithIssues |  |
+
 
 
 <!-- action-docs-outputs -->
