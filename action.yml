@@ -128,6 +128,7 @@ runs:
         printf '################################################################################\n\n'
         if test "${num_files_with_issues}" -gt '0'; then
           echo "::error::[ShellChecker] NUMBER OF FILES WITH ISSUES: ${num_files_with_issues} 🐛"
+          exit 1
         else
           echo "::notice::[ShellChecker] NUMBER OF FILES WITH ISSUES: ${num_files_with_issues} ✅"
           printf "\033[32mAll is good!\n"
@@ -138,4 +139,3 @@ runs:
         # Displaying ShellCheck summary...
         echo "Number of files with issues: ${{ steps.shellcheck-scan.outputs.numfileswithissues }}"
         echo "List of files with issues: ${{ steps.shellcheck-scan.outputs.pathfileswithissues }}"
-        exit "${{ steps.shellcheck-scan.outputs.numfileswithissues }}"
