@@ -92,8 +92,8 @@ runs:
 
         scan_files()
         {
-          files_with_issues='0'
-          path_of_files_with_issues=()
+          count='0'
+          list=()
           escaped_csi="$(printf '\033\[')"
           set -o pipefail
           while read -r FILE; do
@@ -113,15 +113,15 @@ runs:
               else
                 "${{ github.action_path }}/shellcheck" "$FILE" | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\t\1/"; STATUS="$?"
               fi
-              if test "${STATUS}" -ne 0; then files_with_issues="$((files_with_issues+1))"; path_of_files_with_issues+=("$FILE"); fi
+              if test "${STATUS}" -ne 0; then count="$((count+1))"; list+=("$FILE"); fi
             else
               echo "Skipped: $FILE"
             fi
           done
 
-          echo "::set-output name=numfileswithissues::${files_with_issues}"
-          echo "::set-output name=pathfileswithissues::${path_of_files_with_issues[@]}"; unset path_of_files_with_issues
-          return "${files_with_issues}"
+          echo "::set-output name=numfileswithissues::${count}"
+          echo "::set-output name=pathfileswithissues::${list[@]}"; unset list
+          return "${count}"
         }
         find '.' -type f \! -path './.git/*' | LC_ALL=C sort | scan_files; num_files_with_issues="$?"
 
