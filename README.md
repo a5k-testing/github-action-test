@@ -2,7 +2,7 @@
 <!-- action-docs-description -->
 ## Description
 
-GitHub action to execute a lint check of shell scripts using ShellCheck.
+GitHub action to execute a lint check of all shell scripts using ShellCheck.
 
 
 <!-- action-docs-description -->
@@ -12,9 +12,9 @@ GitHub action to execute a lint check of shell scripts using ShellCheck.
 
 | parameter | description | required | default |
 | - | - | - | - |
-| shellcheck-version | Version of ShellCheck to use. Values: [stable, latest, v0.7.2, etc.]. | `false` | stable |
-| severity | Minimum severity of issues to display. Values: [error, warning, info, style]. | `false` | style |
-| enable-all-opt-checks |  | `false` | false |
+| shellcheck-version | Version of ShellCheck to use. Values: [stable, latest, v0.7.2, ...]. | `false` | stable |
+| severity | Minimum severity of issues to display. Values: [style, info, warning, error]. | `false` | style |
+| enable-all-opt-checks | Enable all optional checks. Values: [true, false] | `false` | false |
 | ignore-files | List of files to ignore, the separator is | | `false` |  |
 
 
@@ -26,8 +26,8 @@ GitHub action to execute a lint check of shell scripts using ShellCheck.
 
 | parameter | description |
 | - | - |
-| num-files-wth-issues |  |
-| path-files-with-issues |  |
+| num-files-wth-issues | Number of files with issues |
+| path-files-with-issues | A list of files with issues |
 
 
 
