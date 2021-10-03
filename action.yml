@@ -32,7 +32,7 @@ outputs:
     value: "${{ steps.shellcheck-scan.outputs.numfileswithissues }}"
   path-files-with-issues:
     description: "A list of files with issues"
-    value: "${{ steps.shellcheck-scan.outputs.pathfileswithissues }}"
+    value: "${{ steps.shellcheck-scan.outputs.listfileswithissues }}"
 runs:
   using: "composite"
   steps:
@@ -120,7 +120,7 @@ runs:
           done
 
           echo "::set-output name=numfileswithissues::${count}"
-          echo "::set-output name=pathfileswithissues::${list[@]}"; unset list
+          echo "::set-output name=listfileswithissues::${list[@]}"; unset list
           return "${count}"
         }
         find '.' -type f \! -path './.git/*' | LC_ALL=C sort | scan_files; num_files_with_issues="$?"
@@ -137,5 +137,5 @@ runs:
       run: |
         # Displaying ShellCheck summary...
         echo "Number of files with issues: ${{ steps.shellcheck-scan.outputs.numfileswithissues }}"
-        echo "List of files with issues: ${{ steps.shellcheck-scan.outputs.pathfileswithissues }}"
+        echo "List of files with issues: ${{ steps.shellcheck-scan.outputs.listfileswithissues }}"
         exit '1'
