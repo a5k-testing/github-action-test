@@ -16,10 +16,10 @@ GitHub action to execute a lint check of all shell scripts using ShellCheck.
 
 | parameter | description | required | default |
 | - | - | - | - |
-| shellcheck-version | Version of ShellCheck to use. Values: [stable, latest, v0.7.2, ...]. | `false` | stable |
-| severity | Minimum severity of issues to display. Values: [style, info, warning, error]. | `false` | style |
+| shellcheck-version | Version of ShellCheck to use. Values: [stable, latest, v0.7.2, ...] | `false` | stable |
+| severity | Minimum severity of issues to display. Values: [style, info, warning, error] | `false` | style |
 | enable-all-opt-checks | Enable all optional checks. Values: [true, false] | `false` | false |
-| ignore-files | List of files to ignore, the separator is | | `false` |  |
+| ignore-files | List of files to ignore, the separator is: | | `false` |  |
 
 
 
