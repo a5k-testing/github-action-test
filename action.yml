@@ -11,7 +11,7 @@ branding:
   color: "green"
 
 inputs:
-  shellcheck-version:
+  shellcheckVersion:
     description: "Version of ShellCheck to use. Values: [stable, latest, v0.7.2, etc.]."
     required: false
     default: "stable"
@@ -19,9 +19,20 @@ inputs:
     description: "Minimum severity of issues to display. Values: [error, warning, info, style]."
     required: false
     default: "style"
+  enableAllOptionalChecks:
+    description: ""
+    required: false
+    default: "false"
   ignore-files:
     description: "List of files to ignore, the separator is |"
     required: false
+outputs:
+  numFilesWithIssues:
+    description: ""
+    value: "${{ steps.shellcheck-scan.outputs.numfileswithissues }}"
+  pathFilesWithIssues:
+    description: ""
+    value: "${{ steps.shellcheck-scan.outputs.pathfileswithissues }}"
 runs:
   using: "composite"
   steps:
@@ -44,7 +55,7 @@ runs:
 
         case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) annotate_error 1; esac
         action_path="${{ github.action_path }}"
-        sc_ver="${{ inputs.shellcheck-version }}"
+        sc_ver="${{ inputs.shellcheckVersion }}"
         base_url="https://github.com/koalaman/shellcheck/releases/download/${sc_ver?}/"
         if test "${current_os}" = 'win'; then archive_name="shellcheck-${sc_ver?}.zip"; else archive_name="shellcheck-${sc_ver?}.${current_os?}.x86_64.tar.xz"; fi
 
@@ -65,14 +76,14 @@ runs:
         # Displaying ShellCheck version...
         "${{ github.action_path }}/shellcheck" --version
     - name: "Execute ShellCheck scan"
+      id: 'shellcheck-scan'
       shell: bash {0}
       run: |
         # Executing ShellCheck scan...
-        sc_params=()
-        sc_params+=("--enable=all")
-        sc_params+=("--color")
-        sc_params+=("-S"); sc_params+=("${{ inputs.severity }}")
-        if test "${{ github.event_name }}" != 'pull_request'; then sc_params+=("-x"); fi
+        SHELLCHECK_OPTS="--color --severity=${{ inputs.severity }}"
+        if test "${{ inputs.enableAllOptionalChecks }}" != 'false'; then SHELLCHECK_OPTS+=" --enable=all"; fi
+        if test "${{ github.event_name }}" != 'pull_request'; then SHELLCHECK_OPTS+=" -x"; fi
+        export SHELLCHECK_OPTS
 
         ignore_string="${{ inputs.ignore-files }}"
         ignore_list=()
@@ -86,6 +97,7 @@ runs:
         scan_files()
         {
           files_with_issues='0'
+          path_of_files_with_issues=()
           escaped_csi="$(printf '\033\[')"
           set -o pipefail
           while read -r FILE; do
@@ -101,15 +113,19 @@ runs:
             elif expr "$FILE_LOWER" : '^.*\.\(sh\|bash\|ash\|dash\|ksh\)$' 1>/dev/null || test '#!' = "$(head -c 2 "$FILE")"; then
               echo "Currently scanning: $FILE"
               if test "${{ runner.os }}" = 'Windows'; then
-                "${{ github.action_path }}/shellcheck" "${sc_params[@]}" "$FILE" | tr -d '\r' | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\t\1/"; STATUS="$?"
+                "${{ github.action_path }}/shellcheck" "$FILE" | tr -d '\r' | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\t\1/"; STATUS="$?"
               else
-                "${{ github.action_path }}/shellcheck" "${sc_params[@]}" "$FILE" | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\t\1/"; STATUS="$?"
+                "${{ github.action_path }}/shellcheck" "$FILE" | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\t\1/"; STATUS="$?"
               fi
-              if test "${STATUS}" -ne 0; then files_with_issues="$((files_with_issues+1))"; fi
+              if test "${STATUS}" -ne 0; then files_with_issues="$((files_with_issues+1))"; path_of_files_with_issues+=("$FILE"); fi
             else
               echo "Skipped: $FILE"
             fi
           done
+
+          echo "::set-output name=numfileswithissues::${files_with_issues}"
+          echo "::set-output name=pathfileswithissues::${path_of_files_with_issues[@]}"
+          unset path_of_files_with_issues
           return "${files_with_issues}"
         }
         find '.' -type f \! -path './.git/*' | LC_ALL=C sort | scan_files; files_with_issues="$?"
