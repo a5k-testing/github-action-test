@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Display number of files with issues
         run: |
-          echo "${{ steps.shellcheck-run.outputs.num-files-wth-issues }}"
+          echo "${{ needs.lint.steps.shellcheck-run.outputs.num-files-wth-issues }}"
       - name: Display path of files with issues
         run: |
-          echo "${{ steps.shellcheck-run.outputs.path-files-with-issues }}"
+          echo "${{ needs.lint.steps.shellcheck-run.outputs.path-files-with-issues }}"
