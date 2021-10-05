@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       num-files-wth-issues: ${{ steps.shellcheck-run.outputs.num-files-wth-issues }}
-      path-files-with-issues: ${{ steps.shellcheck-run.outputs.path-files-with-issues }}
+      list-files-with-issues: ${{ steps.shellcheck-run.outputs.list-files-with-issues }}
 
     steps:
       - name: Checkout code
@@ -39,4 +39,5 @@ jobs:
           echo "${{ needs.lint.outputs.num-files-wth-issues }}"
       - name: Display path of files with issues
         run: |
-          echo "${{ needs.lint.outputs.path-files-with-issues }}"
+          files_list="${{ needs.lint.outputs.list-files-with-issues }}"
+          for val in "${files_list[@]}"; do echo "${val}"; done
