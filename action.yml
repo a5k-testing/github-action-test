@@ -120,7 +120,7 @@ runs:
           done
 
           echo "::set-output name=numfileswithissues::${count}"
-          echo "::set-output name=listfileswithissues::${list[@]}"; unset list
+          echo "::set-output name=listfileswithissues::(${list[@]})"; unset list
           return "${count}"
         }
         find '.' -type f \! -path './.git/*' | LC_ALL=C sort | scan_files; num_files_with_issues="$?"
