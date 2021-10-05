@@ -118,9 +118,10 @@ runs:
               echo "Skipped: $FILE"
             fi
           done
+          list_string="$(printf '"%s" ' "${list[@]}")"; unset list
 
           echo "::set-output name=numfileswithissues::${count}"
-          echo "::set-output name=listfileswithissues::(${list[@]})"; unset list
+          echo "::set-output name=listfileswithissues::(${list_string})"; unset list_string
           return "${count}"
         }
         find '.' -type f \! -path './.git/*' | LC_ALL=C sort | scan_files; num_files_with_issues="$?"
