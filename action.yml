@@ -30,7 +30,7 @@ outputs:
   num-files-wth-issues:
     description: "Number of files with issues"
     value: "${{ steps.shellcheck-scan.outputs.numfileswithissues }}"
-  path-files-with-issues:
+  list-files-with-issues:
     description: "A list of files with issues"
     value: "${{ steps.shellcheck-scan.outputs.listfileswithissues }}"
 runs:
