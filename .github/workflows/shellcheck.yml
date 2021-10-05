@@ -39,5 +39,5 @@ jobs:
           echo "${{ needs.lint.outputs.num-files-wth-issues }}"
       - name: Display path of files with issues
         run: |
-          files_list="${{ needs.lint.outputs.list-files-with-issues }}"
+          files_list=${{ needs.lint.outputs.list-files-with-issues }}
           for val in "${files_list[@]}"; do echo "${val}"; done
