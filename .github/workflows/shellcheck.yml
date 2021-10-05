@@ -3,16 +3,12 @@ name: SC Linux
 
 on: [push, pull_request, workflow_dispatch]
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
   lint:
     runs-on: ubuntu-latest
     outputs:
-      num-files-wth-issues: ${{ steps.shellcheck-run.outputs.num-files-wth-issues }}
-      list-files-with-issues: ${{ steps.shellcheck-run.outputs.list-files-with-issues }}
+      num-files-wth-issues: ${{ steps.shellchecker.outputs.num-files-wth-issues }}
+      list-files-with-issues: ${{ steps.shellchecker.outputs.list-files-with-issues }}
 
     steps:
       - name: Checkout code
@@ -20,8 +16,8 @@ jobs:
         with:
           repository: "micro5k/microg-unofficial-installer"
           #ref: "26a99ae486dd92e3438a4f82e8415bd49336cfd7"
-      - name: Run ShellCheck
-        id: shellcheck-run
+      - name: ShellChecker
+        id: shellchecker
         uses: a5k-testing/github-action-test@main
         with:
           #shellcheck-version: "v0.7.2"
@@ -35,9 +31,11 @@ jobs:
 
     steps:
       - name: Display number of files with issues
+        shell: bash
         run: |
           echo "${{ needs.lint.outputs.num-files-wth-issues }}"
       - name: Display path of files with issues
+        shell: bash
         run: |
           files_list=${{ needs.lint.outputs.list-files-with-issues }}
           for val in "${files_list[@]}"; do echo "${val}"; done
