@@ -118,7 +118,7 @@ runs:
               echo "Skipped: $FILE"
             fi
           done
-          list_string="$(printf '"%s" ' "${list[@]}")"; unset list
+          list_string="$(printf '\"%s\" ' "${list[@]}")"; unset list
 
           echo "::set-output name=numfileswithissues::${count}"
           echo "::set-output name=listfileswithissues::(${list_string})"; unset list_string
