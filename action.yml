@@ -34,7 +34,7 @@ outputs:
     description: "A list of files with issues"
     value: "${{ steps.shellcheck-scan.outputs.listfileswithissues }}"
 defaults:
-  run:
+  runs:
     shell: bash
 runs:
   using: "composite"
