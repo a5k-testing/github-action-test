@@ -33,18 +33,17 @@ outputs:
   list-files-with-issues:
     description: "A list of files with issues"
     value: "${{ steps.shellcheck-scan.outputs.listfileswithissues }}"
-defaults:
-  runs:
-    shell: bash
 runs:
   using: "composite"
   steps:
     - name: "Set up matcher"
+      shell: bash
       run: |
         # Setting up matcher...
         matcher_file="${{ github.action_path }}/.github/matchers/tty/shellcheck-matcher-colors.json"
         if test -f "${matcher_file}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher configured.'; fi
     - name: "Download ShellCheck"
+      shell: bash
       run: |
         # Downloading ShellCheck...
         BASE_LINE='49'
@@ -68,6 +67,7 @@ runs:
         mv -f "./shellcheck-${sc_ver?}/shellcheck"* "${action_path?}/" || annotate_error 5
         rm -f "./${archive_name?}"; rm -rf "./shellcheck-${sc_ver?}"
     - name: "Display ShellCheck version"
+      shell: bash
       run: |
         # Displaying ShellCheck version...
         "${{ github.action_path }}/shellcheck" --version
@@ -129,13 +129,8 @@ runs:
         printf '################################################################################\n\n'
         if test "${num_files_with_issues}" -gt '0'; then
           echo "::error::[ShellChecker] NUMBER OF FILES WITH ISSUES: ${num_files_with_issues} 🐛"
+          exit '1'
         else
           echo "::notice::[ShellChecker] NUMBER OF FILES WITH ISSUES: 0 ✅"
           printf "\033[32mAll is good!\n"
         fi
-    - name: "Display ShellCheck summary"
-      run: |
-        # Displaying ShellCheck summary...
-        echo "Number of files with issues: ${{ steps.shellcheck-scan.outputs.numfileswithissues }}"
-        echo "List of files with issues: ${{ steps.shellcheck-scan.outputs.listfileswithissues }}"
-        exit '1'
