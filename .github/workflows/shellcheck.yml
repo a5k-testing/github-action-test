@@ -1,5 +1,5 @@
 ---
-name: SC Linux
+name: "Code linting"
 
 on: [push, pull_request, workflow_dispatch]
 
@@ -34,7 +34,7 @@ jobs:
       - name: Display number of files with issues
         shell: bash
         run: |
-          # Files with issues:
+          # Total:
           echo "${{ needs.shellchecker.outputs.num-files-wth-issues }}"
       - name: Display list of files with issues
         shell: bash
