@@ -7,6 +7,8 @@
 ## Description
 
 GitHub action to execute a lint check of all shell scripts using ShellCheck.
+
+
 <!-- action-docs-description -->
 
 ## Usage example
@@ -37,13 +39,19 @@ jobs:
 | shellcheck-version | Version of ShellCheck to use. Values: [stable, latest, v0.7.2, ...] | `false` | stable |
 | severity | Minimum severity of issues to display. Values: [style, info, warning, error] | `false` | style |
 | enable-all-opt-checks | Enable all optional checks. Values: [true, false] | `false` | false |
-| ignore-files | List of files to ignore, the separator is: &#124; | `false` |  |
+| ignore-files | List of files to ignore, the separator is: | | `false` |  |
 
 
 
 <!-- action-docs-inputs -->
 
 <!-- action-docs-outputs -->
+## Outputs
+
+| parameter | description |
+| - | - |
+| NumFilesWthIssues | Number of files with issues |
+| ListFilesWithIssues | A list of files with issues |
 
 
 
