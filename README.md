@@ -7,9 +7,27 @@
 ## Description
 
 GitHub action to execute a lint check of all shell scripts using ShellCheck.
-
-
 <!-- action-docs-description -->
+
+## Usage example
+
+```yaml
+---
+name: "Code linting"
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  shellchecker:
+    name: "ShellChecker"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v2
+      - name: "ShellChecker"
+        uses: a5k-actions/shellchecker@main
+```
 
 <!-- action-docs-inputs -->
 ## Inputs
