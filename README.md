@@ -13,6 +13,7 @@ GitHub action to execute a lint check of all shell scripts using ShellCheck.
 
 ## Usage example
 
+<sub>*.github/workflows/code-linting.yml* :</sub>
 ```yaml
 ---
 name: "Code linting"
