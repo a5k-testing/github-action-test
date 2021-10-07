@@ -66,6 +66,13 @@ runs:
         fi
         mv -f "./shellcheck-${sc_ver?}/shellcheck"* "${action_path?}/" || annotate_error 5
         rm -f "./${archive_name?}"; rm -rf "./shellcheck-${sc_ver?}"
+        
+        hash
+        echo "$PATH"
+        PATH="${action_path}:${PATH}"
+        echo "$PATH"
+        hash
+        
     - name: "Display ShellCheck version"
       shell: bash
       run: |
@@ -76,6 +83,8 @@ runs:
       shell: bash {0}
       run: |
         # Executing ShellCheck scan...
+        echo "$PATH"
+        hash
         SHELLCHECK_OPTS="--color --severity=${{ inputs.severity }}"
         if test "${{ inputs.enable-all-opt-checks }}" != 'false'; then SHELLCHECK_OPTS+=" --enable=all"; fi
         if test "${{ github.event_name }}" != 'pull_request'; then SHELLCHECK_OPTS+=" -x"; fi
