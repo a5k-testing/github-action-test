@@ -27,10 +27,10 @@ inputs:
     description: "List of files to ignore, the separator is: |"
     required: false
 outputs:
-  num-files-wth-issues:
+  NumFilesWthIssues:
     description: "Number of files with issues"
     value: "${{ steps.shellcheck-scan.outputs.numfileswithissues }}"
-  list-files-with-issues:
+  ListFilesWithIssues:
     description: "A list of files with issues"
     value: "${{ steps.shellcheck-scan.outputs.listfileswithissues }}"
 runs:
