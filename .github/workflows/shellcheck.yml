@@ -5,6 +5,7 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   lint:
+    name: "ShellChecker"
     runs-on: ubuntu-latest
     outputs:
       num-files-wth-issues: ${{ steps.shellchecker.outputs.num-files-wth-issues }}
