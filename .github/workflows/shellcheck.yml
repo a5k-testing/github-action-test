@@ -27,10 +27,10 @@ jobs:
         shell: bash
         run: |
           # Compile
-          hash gawk
-          #hash
           cd shdoc_src
-          #make install
+          make install
+          hash gawk shdoc
+          hash
           shdoc < ../TEST.sh > doc.md
           cat doc.md
       - name: "ShellChecker"
