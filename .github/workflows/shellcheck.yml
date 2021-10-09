@@ -30,6 +30,7 @@ jobs:
           cd shdoc_src
           make install
           cd ..
+          rm -rf shdoc_src
           hash gawk shdoc
           mkdir -p documentation
           shdoc < ./TEST.sh > ./documentation/doc.md
