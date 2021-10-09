@@ -30,7 +30,7 @@ jobs:
           hash gawk
           hash
           cd shdoc_src
-          sudo make install
+          make install
       - name: "ShellChecker"
         id: "shellchecker-run"
         uses: a5k-testing/github-action-test@main
