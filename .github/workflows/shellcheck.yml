@@ -31,6 +31,8 @@ jobs:
           hash
           cd shdoc_src
           make install
+          shdoc < ../build.sh > doc.md
+          cat doc.md
       - name: "ShellChecker"
         id: "shellchecker-run"
         uses: a5k-testing/github-action-test@main
