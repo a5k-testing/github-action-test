@@ -22,6 +22,7 @@ jobs:
         with:
           repository: "reconquest/shdoc"
           path: "shdoc_src"
+          submodules: "true"
       - name: Compile
         shell: bash
         run: |
