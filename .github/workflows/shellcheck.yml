@@ -29,7 +29,7 @@ jobs:
           # Compile
           hash gawk
           #hash
-          #cd shdoc_src
+          cd shdoc_src
           #make install
           shdoc < ../TEST.sh > doc.md
           cat doc.md
