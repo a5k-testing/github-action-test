@@ -35,10 +35,10 @@ jobs:
         shell: bash
         run: |
           # Total:
-          echo "${{ needs.shellchecker.outputs.num-files-wth-issues }}"
+          echo "${{ needs.shellchecker.outputs.num-files-wth-issues }?}"
       - name: Display list of files with issues
         shell: bash
         run: |
           # List:
           files_list=${{ needs.shellchecker.outputs.list-files-with-issues }}
-          for val in "${files_list[@]}"; do echo "${val}"; done
+          for val in "${files_list[@]?}"; do echo "${val}"; done
