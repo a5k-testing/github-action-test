@@ -22,18 +22,18 @@ jobs:
         with:
           repository: "reconquest/shdoc"
           path: "shdoc_src"
-      - name: "ShellChecker"
-        id: "shellchecker-run"
-        uses: a5k-testing/github-action-test@main
-        with:
-          enable-all-opt-checks: "true"
-          ignore-files: "gradlew|.gitlab-ci.yml"
       - name: Compile
         shell: bash
         run: |
           # Compile
           cd shdoc_src
           make install
+      - name: "ShellChecker"
+        id: "shellchecker-run"
+        uses: a5k-testing/github-action-test@main
+        with:
+          enable-all-opt-checks: "true"
+          ignore-files: "gradlew|.gitlab-ci.yml"
 
   get-results:
     name: "Get results"
