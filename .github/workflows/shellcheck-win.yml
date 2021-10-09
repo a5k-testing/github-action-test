@@ -1,19 +1,44 @@
 ---
-name: SC Windows
+name: "Code linting (Windows)"
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  lint:
+  shellchecker:
+    name: "ShellChecker"
     runs-on: windows-latest
+    outputs:
+      num-files-wth-issues: ${{ steps.shellchecker-run.outputs.NumFilesWthIssues }}
+      list-files-with-issues: ${{ steps.shellchecker-run.outputs.ListFilesWithIssues }}
 
     steps:
-      - name: Checkout code
+      - name: "Checkout code"
         uses: actions/checkout@v2
         with:
-          repository: 'micro5k/microg-unofficial-installer'
-          # ref: '26a99ae486dd92e3438a4f82e8415bd49336cfd7'
-      - name: Run ShellCheck
+          repository: "micro5k/microg-unofficial-installer"
+          #ref: "26a99ae486dd92e3438a4f82e8415bd49336cfd7"
+      - name: "ShellChecker"
+        id: "shellchecker-run"
         uses: a5k-testing/github-action-test@main
         with:
-          ignore-files: 'gradlew|gradlew.bat|.gitlab-ci.yml'
+          enable-all-opt-checks: "true"
+          ignore-files: "gradlew|.gitlab-ci.yml"
+
+  get-results:
+    name: "Get results"
+    runs-on: windows-latest
+    if: always()
+    needs: shellchecker
+
+    steps:
+      - name: Display number of files with issues
+        shell: bash
+        run: |
+          # Total:
+          echo "${{ needs.shellchecker.outputs.num-files-wth-issues }}"
+      - name: Display list of files with issues
+        shell: bash
+        run: |
+          # List:
+          files_list=${{ needs.shellchecker.outputs.list-files-with-issues }}
+          for val in "${files_list[@]}"; do echo "${val}"; done
