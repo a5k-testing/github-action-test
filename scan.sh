@@ -3,6 +3,8 @@
 shellcheck_path="$1"
 ext_regexp='\.(sh|bash|dash|ksh)$'
 test=123
+...
+abc=1
 
 scan_file()  # $1 => File path to scan
 {
