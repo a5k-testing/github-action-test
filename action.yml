@@ -50,7 +50,7 @@ runs:
       run: |
         # Downloading ShellCheck...
         BASE_LINE='52'
-        annotate_error() { LINE="$(("${BASH_LINENO[0]}"+"${BASE_LINE}"-2))"; echo "::error::Error $1 in action.yml at line ${LINE}" >&2; exit "$1"; }
+        annotate_error() { LINE="$(("${BASH_LINENO[0]}"+"${BASE_LINE}"-2))"; echo "::error::Error $1 in action.yml at line ${LINE}" 1>&2; exit "$1"; }
 
         case "${{ runner.os }}" in 'Linux') current_os='linux';; 'macOS') current_os='darwin';; 'Windows') current_os='win';; *) annotate_error 1; esac
         action_path="${{ github.action_path }}"
@@ -59,12 +59,12 @@ runs:
         if test "${current_os}" = 'win'; then archive_name="shellcheck-${sc_ver?}.zip"; else archive_name="shellcheck-${sc_ver?}.${current_os?}.x86_64.tar.xz"; fi
 
         ## Installing wget (only on Windows)...
-        if test "${current_os}" = 'win'; then choco install --no-progress --yes wget 1>/dev/null || annotate_error 2; fi
+        if test "${current_os}" = 'win'; then choco install --no-progress --yes wget 1>&- || annotate_error 2; fi
 
         download_dir="${action_path?}/our_downloads"
         mkdir -p "${download_dir?}" || annotate_error 3
         cd "${download_dir?}" || annotate_error 4
-        wget -q -O "${archive_name?}" "${base_url?}${archive_name?}" || annotate_error 5
+        wgetX -q -O "${archive_name?}" "${base_url?}${archive_name?}" || annotate_error 5
 
         archive_name="${download_dir?}/${archive_name?}"
         if test "${current_os}" = 'win'; then
