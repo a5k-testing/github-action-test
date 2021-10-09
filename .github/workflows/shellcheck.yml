@@ -26,8 +26,10 @@ jobs:
         shell: bash
         run: |
           # Compile
+          hash gawk
+          hash
           cd shdoc_src
-          make install
+          sudo make install
       - name: "ShellChecker"
         id: "shellchecker-run"
         uses: a5k-testing/github-action-test@main
