@@ -29,15 +29,19 @@ jobs:
           # Compile
           cd shdoc_src
           make install
+          cd ..
           hash gawk shdoc
-          hash
-          shdoc < ../TEST.sh > doc.md
-          cat doc.md
+          mkdir -p documentation
+          shdoc < ./TEST.sh > ./documentation/doc.md
+      - uses: actions/upload-artifact@v2
+        with:
+          name: "Documentation"
+          path: "documentation/"
       - name: "ShellChecker"
         id: "shellchecker-run"
         uses: a5k-testing/github-action-test@main
         with:
-          enable-all-opt-checks: "true"
+          #enable-all-opt-checks: "true"
           ignore-files: "gradlew|.gitlab-ci.yml"
 
   get-results:
