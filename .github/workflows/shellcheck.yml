@@ -14,8 +14,8 @@ jobs:
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v2
-        with:
-          repository: "micro5k/microg-unofficial-installer"
+        #with:
+          #repository: "micro5k/microg-unofficial-installer"
           #ref: "26a99ae486dd92e3438a4f82e8415bd49336cfd7"
       - name: "Checkout Documentation generator"
         uses: actions/checkout@v2
@@ -28,10 +28,10 @@ jobs:
         run: |
           # Compile
           hash gawk
-          hash
-          cd shdoc_src
-          make install
-          shdoc < ../build.sh > doc.md
+          #hash
+          #cd shdoc_src
+          #make install
+          shdoc < ../TEST.sh > doc.md
           cat doc.md
       - name: "ShellChecker"
         id: "shellchecker-run"
