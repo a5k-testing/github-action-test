@@ -17,23 +17,6 @@ jobs:
         #with:
           #repository: "micro5k/microg-unofficial-installer"
           #ref: "26a99ae486dd92e3438a4f82e8415bd49336cfd7"
-      - name: "Checkout Documentation generator"
-        uses: actions/checkout@v2
-        with:
-          repository: "reconquest/shdoc"
-          path: "shdoc_src"
-          submodules: "true"
-      - name: Compile
-        shell: bash
-        run: |
-          # Compile
-          cd shdoc_src
-          make install
-          cd ..
-          rm -rf shdoc_src
-          hash gawk shdoc
-          mkdir -p documentation
-          shdoc < ./TEST.sh > ./documentation/doc.md
       - uses: actions/upload-artifact@v2
         with:
           name: "Documentation"
