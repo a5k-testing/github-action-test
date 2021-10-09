@@ -64,7 +64,7 @@ runs:
         download_dir="${action_path?}/our_downloads"
         mkdir -p "${download_dir?}" || annotate_error 3
         cd "${download_dir?}" || annotate_error 4
-        wgetX -q -O "${archive_name?}" "${base_url?}${archive_name?}" || annotate_error 5
+        wget -q -O "${archive_name?}" "${base_url?}${archive_name?}" || annotate_error 5
 
         archive_name="${download_dir?}/${archive_name?}"
         if test "${current_os}" = 'win'; then
