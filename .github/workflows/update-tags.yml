@@ -19,6 +19,8 @@ jobs:
           fetch-depth: 0
       - name: "Update tags"
         uses: bewuethr/release-tracker-action@v1
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with:
           update-latest: true
           update-minor: false
