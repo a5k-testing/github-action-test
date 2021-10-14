@@ -1,0 +1,19 @@
+---
+name: "Release tag tracker"
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  tags-updater:
+    name: "Release tag tracker"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v2
+      - name: "Release tag tracker"
+        id: "shellchecker-run"
+        uses: bewuethr/release-tracker-action@v1
+        with:
+          update-latest: true
+          update-minor: false
