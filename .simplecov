@@ -1,4 +1,4 @@
-require 'codecov'
 require 'simplecov'
+require 'simplecov-lcov'
 
-SimpleCov.formatter = Codecov::SimpleCov::Formatter
+SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
