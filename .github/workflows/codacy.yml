@@ -26,3 +26,8 @@ jobs:
         run: |
           # Executing code coverage...
           bashcov './scan.sh'
+      - name: "Upload code coverage"
+        shell: bash
+        run: |
+          # Uploading code coverage...
+          bash <(curl -Ls https://coverage.codacy.com/get.sh)
