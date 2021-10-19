@@ -26,7 +26,7 @@ jobs:
         run: |
           # Executing code coverage...
           export OPENSOURCE_ONLY='1'
-          bashcov './build.sh'
+          bashcov './scan.sh'
           ls ./coverage/.resultset.json
       - name: "Upload code coverage to Codacy"
         uses: codacy/codacy-coverage-reporter-action@v1
