@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: |
           # Installing Bashcov...
-          gem install bashcov
+          gem install bashcov codecov
       - name: "Execute code coverage"
         shell: bash
         run: |
