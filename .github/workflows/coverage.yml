@@ -32,7 +32,9 @@ jobs:
           echo "-------------------------------"
           ls **/*
           echo "-------------------------------"
-          /home/runner/work/github-action-test/github-action-test/**/*
+          ls /home/runner/work/github-action-test/github-action-test/**/*
+          echo "-------------------------------"
+          ls ./coverage/**/*
           echo "-------------------------------"
           #cat ./coverage/.resultset.json
       #- name: "Upload code coverage to Codacy"
