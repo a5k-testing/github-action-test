@@ -34,7 +34,7 @@ jobs:
           echo "-------------------------------"
           #ls /home/runner/work/github-action-test/github-action-test/**/*
           echo "-------------------------------"
-          #ls -A ./coverage/**/*
+          ls -A ./coverage/**/*
           echo "-------------------------------"
           #cat ./coverage/.resultset.json
       - name: "Upload code coverage to Codacy"
