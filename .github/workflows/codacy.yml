@@ -5,7 +5,7 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   coverage:
-    name: "Coverage"
+    name: "Code coverage"
     runs-on: ubuntu-latest
 
     steps:
@@ -28,3 +28,5 @@ jobs:
           bashcov './scan.sh'
       - name: "Upload code coverage to Codacy"
         uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
