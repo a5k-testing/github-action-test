@@ -29,7 +29,12 @@ jobs:
           # Executing code coverage...
           export OPENSOURCE_ONLY='1'
           bashcov './build.sh'
-          cat ./coverage/.resultset.json
+          echo "-------------------------------"
+          ls **/*
+          echo "-------------------------------"
+          /home/runner/work/github-action-test/github-action-test/**/*
+          echo "-------------------------------"
+          #cat ./coverage/.resultset.json
       #- name: "Upload code coverage to Codacy"
         #uses: codacy/codacy-coverage-reporter-action@v1
         #with:
