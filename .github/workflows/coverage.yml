@@ -11,34 +11,27 @@ jobs:
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v2
-        with:
-          repository: "micro5k/microg-unofficial-installer"
+        #with:
+          #repository: "micro5k/microg-unofficial-installer"
       - name: "Set up Ruby"
         uses: ruby/setup-ruby@v1.83.0
         with:
-          ruby-version: "3"
-          bundler-cache: true
-      - name: "Install Bashcov"
-        shell: bash
+          ruby-version: "3.0"
+          #bundler-cache: true
+      - name: "Install Bashcov and Codecov"
         run: |
-          # Installing Bashcov...
-          gem install bashcov simplecov-lcov codecov
+          # Installing Bashcov and Codecov...
+          gem install bashcov codecov
       - name: "Execute code coverage"
-        shell: bash
         run: |
           # Executing code coverage...
           export OPENSOURCE_ONLY='1'
-          bashcov './build.sh'
-          echo "-------------------------------"
-          #ls -A **/*
-          echo "-------------------------------"
-          #ls /home/runner/work/github-action-test/github-action-test/**/*
-          echo "-------------------------------"
-          ls -A -R coverage
-          echo "-------------------------------"
-          #cat ./coverage/.resultset.json
-      - name: "Upload code coverage to Codacy"
-        uses: codacy/codacy-coverage-reporter-action@v1
-        with:
-          project-token: "test"
-          coverage-reports: "coverage/codecov-result.json"
+          bashcov './TEST.sh'
+          #bashcov './TEST1.sh'
+
+          cat "${{ github.workspace }}/coverage/codecov-result.json"
+      - name: "Upload reports to Codecov"
+        uses: codecov/codecov-action@v2
+        #with:
+          #directory: "${{ github.workspace }}/coverage"
+          #files: "codecov-result.json"
