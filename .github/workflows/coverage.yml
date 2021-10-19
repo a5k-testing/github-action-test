@@ -30,11 +30,11 @@ jobs:
           export OPENSOURCE_ONLY='1'
           bashcov './build.sh'
           echo "-------------------------------"
-          ls **/*
+          #ls **/*
           echo "-------------------------------"
-          ls /home/runner/work/github-action-test/github-action-test/**/*
+          #ls /home/runner/work/github-action-test/github-action-test/**/*
           echo "-------------------------------"
-          ls ./coverage/**/*
+          ls - A ./coverage/**/*
           echo "-------------------------------"
           #cat ./coverage/.resultset.json
       #- name: "Upload code coverage to Codacy"
