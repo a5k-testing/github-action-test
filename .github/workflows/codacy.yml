@@ -16,8 +16,13 @@ jobs:
         with:
           ruby-version: "3.0"
           bundler-cache: true
-      - name: "Install bashcov"
+      - name: "Install Bashcov"
         shell: bash
         run: |
-          # Install bashcov
+          # Installing Bashcov...
           gem install bashcov
+      - name: "Execute code coverage"
+        shell: bash
+        run: |
+          # Executing code coverage...
+          bashcov './scan.sh'
