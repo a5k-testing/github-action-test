@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v2
+        with:
+          repository: "micro5k/microg-unofficial-installer"
       - name: "Set up Ruby"
         uses: ruby/setup-ruby@v1.83.0
         with:
@@ -26,9 +28,9 @@ jobs:
         run: |
           # Executing code coverage...
           export OPENSOURCE_ONLY='1'
-          bashcov './scan.sh'
+          bashcov './build.sh'
           cat ./coverage/.resultset.json
-      - name: "Upload code coverage to Codacy"
-        uses: codacy/codacy-coverage-reporter-action@v1
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+      #- name: "Upload code coverage to Codacy"
+        #uses: codacy/codacy-coverage-reporter-action@v1
+        #with:
+          #project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
