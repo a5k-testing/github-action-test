@@ -1,5 +1,5 @@
 ---
-name: "Code linting"
+name: "Code coverage"
 
 on: [push, pull_request, workflow_dispatch]
 
@@ -16,7 +16,7 @@ jobs:
       - name: "Set up Ruby"
         uses: ruby/setup-ruby@v1.83.0
         with:
-          ruby-version: "3.0"
+          ruby-version: "3"
           bundler-cache: true
       - name: "Install Bashcov"
         shell: bash
@@ -34,7 +34,7 @@ jobs:
           echo "-------------------------------"
           #ls /home/runner/work/github-action-test/github-action-test/**/*
           echo "-------------------------------"
-          ls - A ./coverage/**/*
+          #ls -A ./coverage/**/*
           echo "-------------------------------"
           #cat ./coverage/.resultset.json
       - name: "Upload code coverage to Codacy"
