@@ -116,9 +116,9 @@ runs:
             elif expr "$FILE_LOWER" : '^.*\.\(sh\|ash\|dash\|ksh\|bash\|bats\)$' 1>/dev/null || test '#!' = "$(head -c 2 "$FILE")"; then
               echo "Currently scanning: $FILE"
               if test "${{ runner.os }}" = 'Windows'; then
-                shellcheck "$FILE" | tr -d '\r' | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\t\t\1/"; STATUS="$?"
+                shellcheck "$FILE" | tr -d '\r' | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\1\t/"; STATUS="$?"
               else
-                shellcheck "$FILE" | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\t\t\1/"; STATUS="$?"
+                shellcheck "$FILE" | sed -e "s/^\(${escaped_csi}[02-9][0-9]\?m\)/\1\t/"; STATUS="$?"
               fi
               if test "${STATUS}" -ne 0; then count="$((count+1))"; list+=("$FILE"); fi
             else
