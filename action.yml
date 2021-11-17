@@ -105,14 +105,14 @@ runs:
         #echo "SC1091 (info): Not following: /tmp/backuptool.functions: openBinaryFile: does not exist (No such file or directory)"
         #echo "SC1091 (info): Not"
         
-        echo "[1mIn ./zip-content/addon.d/00-1-microg.sh line 10:[0m"
-        echo "..."
-        echo "^-- SC2145 (error): Argument mixes string and array. Use * or separate argument.[0m"
+        #echo "[1mIn ./zip-content/addon.d/00-1-microg.sh line 10:[0m"
+        #echo "..."
+        #echo "^-- SC2145 (error): Argument mixes string and array. Use * or separate argument.[0m"
 
-        echo "[1mIn ./zip-content/addon.d/00-1-microg.sh line 10:[0m"
-        echo "..."
-        echo "^--^ SC2086 (style): Double quote to prevent globbing and word splitting.[0m"
-        exit 1
+        #echo "[1mIn ./zip-content/addon.d/00-1-microg.sh line 10:[0m"
+        #echo "..."
+        #echo "^--^ SC2086 (style): Double quote to prevent globbing and word splitting.[0m"
+        #exit 1
 
         scan_files()
         {
