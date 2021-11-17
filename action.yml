@@ -43,10 +43,8 @@ runs:
         action_path="${{ github.action_path }}"
         matcher_file="${action_path?}/.github/matchers/tty/shellcheck-matcher-legacy.json"
         if test -f "${matcher_file?}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher 1 configured.'; fi
-        matcher_file="${action_path?}/.github/matchers/tty/shellcheck-matcher-notice.json"
-        if test -f "${matcher_file?}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher 2 configured.'; fi
         matcher_file="${action_path?}/.github/matchers/tty/shellcheck-matcher.json"
-        if test -f "${matcher_file?}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher 3 configured.'; fi
+        if test -f "${matcher_file?}"; then echo "::add-matcher::${matcher_file}"; echo 'Matcher 2 configured.'; fi
     - name: "Download ShellCheck"
       shell: bash
       run: |
@@ -98,21 +96,6 @@ runs:
           read -ra ignore_list <<< "${ignore_string}"
           IFS="$OLDIFS"
         fi
-
-        #echo "[32m		  ^-----------------------^ SC1091 (info): Not following: /tmp/backuptool.functions: openBinaryFile: does not exist (No such file or directory)[0m"
-        #echo "^-----------------------^ SC1091 (info): Not following: /tmp/backuptool.functions: openBinaryFile: does not exist (No such file or directory)[0m"
-        #echo "^-----------------------^ SC1091 (info): Not following: /tmp/backuptool.functions: openBinaryFile: does not exist (No such file or directory)"
-        #echo "SC1091 (info): Not following: /tmp/backuptool.functions: openBinaryFile: does not exist (No such file or directory)"
-        #echo "SC1091 (info): Not"
-        
-        #echo "[1mIn ./zip-content/addon.d/00-1-microg.sh line 10:[0m"
-        #echo "..."
-        #echo "^-- SC2145 (error): Argument mixes string and array. Use * or separate argument.[0m"
-
-        #echo "[1mIn ./zip-content/addon.d/00-1-microg.sh line 10:[0m"
-        #echo "..."
-        #echo "^--^ SC2086 (style): Double quote to prevent globbing and word splitting.[0m"
-        #exit 1
 
         scan_files()
         {
