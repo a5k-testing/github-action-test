@@ -2,7 +2,7 @@
   "problemMatcher": [
     {
       "owner": "shellcheck-matcher",
-      "severity": "notice",
+      "severity": "warning",
       "pattern": [
         {
           "regexp": "^\\033[^I]+In (.+) line (\\d+):",
