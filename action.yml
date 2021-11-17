@@ -135,7 +135,8 @@ runs:
           echo "::set-output name=listfileswithissues::(${list_string})"; unset list_string
           return "${count}"
         }
-        find '.' -type f \! -path './.git/*' | LC_ALL=C sort | scan_files; num_files_with_issues="$?"
+        num_files_with_issues=0
+        find '.' -type f \! -path './.git/*' | LC_ALL=C sort | scan_files || num_files_with_issues="$?"
 
         printf '################################################################################\n\n'
         if test "${num_files_with_issues}" -gt 0; then
