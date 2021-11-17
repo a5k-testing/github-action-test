@@ -97,6 +97,13 @@ runs:
           IFS="$OLDIFS"
         fi
 
+        echo "[32m		  ^-----------------------^ SC1091 (info): Not following: /tmp/backuptool.functions: openBinaryFile: does not exist (No such file or directory)[0m"
+        echo "^-----------------------^ SC1091 (info): Not following: /tmp/backuptool.functions: openBinaryFile: does not exist (No such file or directory)[0m"
+        echo "^-----------------------^ SC1091 (info): Not following: /tmp/backuptool.functions: openBinaryFile: does not exist (No such file or directory)"
+        echo "SC1091 (info): Not following: /tmp/backuptool.functions: openBinaryFile: does not exist (No such file or directory)"
+        echo "SC1091 (info): Not"
+        exit 0
+
         scan_files()
         {
           count='0'
