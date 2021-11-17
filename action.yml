@@ -109,7 +109,7 @@ runs:
 
         echo "[1mIn ./zip-content/addon.d/00-1-microg.sh line 10:[0m"
         echo "..."
-        echo "^-----------------------^ SC1091 (info): Not following: /tmp/backuptool.functions: openBinaryFile: does not exist (No such file or directory)"
+        echo "^--^ SC2086 (info): Double quote to prevent globbing and word splitting.[0m"
         exit 1
 
         scan_files()
