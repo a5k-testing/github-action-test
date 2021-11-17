@@ -1,0 +1,24 @@
+{
+  "problemMatcher": [
+    {
+      "owner": "shellcheck-matcher-2",
+      "severity": "notice",
+      "pattern": [
+        {
+          "regexp": "^\\033[^I]+In (.+) line (\\d+):",
+          "file": 1,
+          "line": 2
+        },
+        {
+          "regexp": "^."
+        },
+        {
+          "regexp": "(SC\\d{4}) \\((info|style)\\): ([^\\033]+)",
+          "code": 1,
+          "message": 3,
+          "loop": true
+        }
+      ]
+    }
+  ]
+}
