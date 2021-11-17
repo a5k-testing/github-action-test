@@ -77,7 +77,7 @@ runs:
         rm -rf "${download_dir?}" || annotate_error 9
     - name: "Execute ShellCheck scan"
       id: "shellcheck-scan"
-      shell: bash {0}
+      shell: bash
       run: |
         # Executing ShellCheck scan...
         PATH="${{ github.action_path }}:${PATH}"
