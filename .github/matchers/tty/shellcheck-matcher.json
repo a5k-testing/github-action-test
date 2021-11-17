@@ -15,7 +15,6 @@
         {
           "regexp": "(SC\\d{4}) \\((error|warning|info|style)\\): (.+)",
           "code": 1,
-          "severity": 2,
           "message": 3,
           "loop": true
         }
