@@ -12,13 +12,6 @@ jobs:
         uses: actions/checkout@v2
         # with:
           # repository: 'a5k-actions/shellchecker'
-      - name: "Validate codecov.yml"
-        shell: bash
-        run: |
-          codecov_path='${{ github.workspace }}/codecov.yml'
-          if test -f "${codecov_path}"; then
-            wget -O- --post-file "${codecov_path}" https://codecov.io/validate || (echo 'NOT Valid!'; exit 1)
-          fi
       - name: "YAML Lint"
         uses: ibiqlik/action-yamllint@v3
         # with:
