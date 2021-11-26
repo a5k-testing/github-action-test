@@ -17,7 +17,7 @@ jobs:
         run: |
           codecov_path='${{ github.workspace }}/codecov.yml'
           if test -f "${codecov_path}"; then
-            wget -qO- --post-file "${codecov_path}" https://codecov.io/validate 2>&- || (echo 'NOT Valid!'; exit 1)
+            wget -qO- --post-file "${codecov_path}" https://codecov.io/validate || (echo 'NOT Valid!'; exit 1)
           fi
       - name: "YAML Lint"
         uses: ibiqlik/action-yamllint@v3
