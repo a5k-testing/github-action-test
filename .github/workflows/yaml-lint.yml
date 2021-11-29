@@ -1,7 +1,9 @@
 ---
 name: YAML Lint
-
-on: [push, pull_request]
+on:
+  - push
+  - pull_request
+  - workflow_dispatch
 
 jobs:
   lint:
@@ -11,8 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         # with:
-          # repository: 'a5k-actions/shellchecker'
+        #   repository: 'a5k-actions/shellchecker'
       - name: "YAML Lint"
         uses: ibiqlik/action-yamllint@v3
         # with:
-          # format: github
+        #   format: github
