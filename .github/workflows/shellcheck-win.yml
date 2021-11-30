@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: "micro5k/microg-unofficial-installer"
-          #ref: "26a99ae486dd92e3438a4f82e8415bd49336cfd7"
+          # ref: "26a99ae486dd92e3438a4f82e8415bd49336cfd7"
       - name: "ShellChecker"
         id: "shellchecker-run"
         uses: a5k-testing/github-action-test@main
