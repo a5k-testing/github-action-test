@@ -102,11 +102,10 @@ runs:
           count='0'
           list=()
           escaped_csi="$(printf '\033\[')"
-          regexp_1="s/^\(${escaped_csi}0m\)/\t\1/"
-          regexp_2="s/^\(${escaped_csi}[2-9][0-9]\?m\)/\t\1/"
+          regexp_1="s/^\(${escaped_csi}0m\)/         \1/"
+          regexp_2="s/^\(${escaped_csi}[2-9][0-9]\?m\)/         \1/"
 
           set -o pipefail
-          setterm -regtabs 9
           while read -r FILE; do
             echo '################################################################################'
             FILE_LOWER="$(echo "${FILE}" | tr '[:upper:]' '[:lower:]')"
@@ -130,7 +129,6 @@ runs:
               echo "Skipped: $FILE"
             fi
           done
-          setterm -regtabs 8
           list_string="$(printf '\"%s\" ' "${list[@]}")"; unset list
 
           echo "::set-output name=numfileswithissues::${count}"
