@@ -106,6 +106,7 @@ runs:
           regexp_2="s/^\(${escaped_csi}[2-9][0-9]\?m\)/\t\1/"
 
           set -o pipefail
+          tabs 9
           while read -r FILE; do
             echo '################################################################################'
             FILE_LOWER="$(echo "${FILE}" | tr '[:upper:]' '[:lower:]')"
@@ -129,6 +130,7 @@ runs:
               echo "Skipped: $FILE"
             fi
           done
+          tabs 8
           list_string="$(printf '\"%s\" ' "${list[@]}")"; unset list
 
           echo "::set-output name=numfileswithissues::${count}"
