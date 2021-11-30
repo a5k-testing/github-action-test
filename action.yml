@@ -102,7 +102,7 @@ runs:
           count='0'
           list=()
           escaped_csi="$(printf '\033\[')"
-          regexp_1="s/^\(${escaped_csi}0m\)/\t\t\1/"
+          regexp_1="s/^\(${escaped_csi}0m\)/\t\1/"
           regexp_2="s/^\(${escaped_csi}[2-9][0-9]\?m\)/\t\1/"
 
           set -o pipefail
