@@ -26,7 +26,7 @@ jobs:
         uses: a5k-testing/github-action-test@main
         with:
           # shellcheck-version: "v0.7.2"
-          enable-all-opt-checks: "true"
+          # enable-all-opt-checks: "true"
           ignore-files: "gradlew|.gitlab-ci.yml"
       - name: "REUSE Compliance Check"
         uses: fsfe/reuse-action@v1
