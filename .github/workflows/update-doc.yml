@@ -13,7 +13,7 @@ jobs:
       - name: Action update docs action
         uses: npalm/action-docs-action@develop
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v4
         with:
           author: "ale5000 <15793015+ale5000-git@users.noreply.github.com>"
           signoff: "true"
