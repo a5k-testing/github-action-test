@@ -43,7 +43,7 @@ jobs:
         run: |
           # Validating dep5
           sudo apt-get -qq -y install cme 1> /dev/null
-          if test -e "${{ github.workspace }}/.reuse/dep5"; then cme check dpkg-copyright -file "${{ github.workspace }}/.reuse/dep5"; fi
+          if test -e './.reuse/dep5'; then cme check dpkg-copyright -file './.reuse/dep5'; fi
 
   get-results:
     name: "Get results"
