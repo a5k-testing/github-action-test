@@ -9,3 +9,9 @@ Files: TEST*.sh
 Copyright: Copyright (C) tons of folks. See: https://github.com/
 License: GPL-2.0-only
 Comment: [Sources => 'bla', Binary => 'bla bla']
+
+License: GPL-3.0-or-later
+ [LICENSE TEXT]
+
+License: GPLx-2.0-only
+ [LICENSE TEXT]
