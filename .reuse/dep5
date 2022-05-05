@@ -13,5 +13,5 @@ Comment: [Sources => 'bla', Binary => 'bla bla']
 License: GPL-3.0-or-later
  [LICENSE TEXT]
 
-License: GPL-2.0-only
+License: GPLx-2.0-only
  [LICENSE TEXT]
