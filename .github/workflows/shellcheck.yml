@@ -44,8 +44,9 @@ jobs:
           # Validating dep5
           if ! test -e './.reuse/dep5'; then exit 0; fi
           sudo apt-get -qq -y install cme 1> /dev/null
-          cme check dpkg-copyright -file './.reuse/dep5'; status="${?}"
-          if test "${status}" -eq 0; then echo 'Pass'; else echo 'Fail'; exit "${status}"; fi
+          status='0'
+          cme check dpkg-copyright -file './.reuse/dep5' || status="${?}"
+          if test "${status}" -eq 0; then echo 'Result: pass'; else echo 'Result: fail'; exit "${status}"; fi
 
   get-results:
     name: "Get results"
