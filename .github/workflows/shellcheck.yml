@@ -20,6 +20,7 @@ jobs:
       - name: Check dep5
         shell: bash
         run: |
+          sudo apt-get -qq -y install cme
           cme check dpkg-copyright -file ./.reuse/dep5
       - uses: actions/upload-artifact@v2
         with:
