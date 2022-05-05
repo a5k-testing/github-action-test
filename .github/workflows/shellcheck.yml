@@ -14,9 +14,13 @@ jobs:
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v2
-        with:
-          repository: "micro5k/microg-unofficial-installer"
+        # with:
+          # repository: "micro5k/microg-unofficial-installer"
           # ref: "26a99ae486dd92e3438a4f82e8415bd49336cfd7"
+      - name: Check dep5
+        shell: bash
+        run: |
+          cme check dpkg-copyright -file ./.reuse/dep5
       - uses: actions/upload-artifact@v2
         with:
           name: "Documentation"
