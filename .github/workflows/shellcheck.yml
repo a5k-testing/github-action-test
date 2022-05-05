@@ -31,19 +31,19 @@ jobs:
       # - name: "REUSE Compliance Check"
         # uses: fsfe/reuse-action@v1
 
-  validate-dep5:
+  validator:
     name: "Validate dep5"
     runs-on: ubuntu-latest
 
     steps:
-      - name: "Checkout code"
+      - name: "Check out code"
         uses: actions/checkout@v3
       - name: "Validate dep5"
         shell: bash
         run: |
           # Validating dep5
           sudo apt-get -qq -y install cme 1> /dev/null
-          cme check dpkg-copyright -file ./.reuse/dep5
+          if test -e "${{ github.workspace }}/.reuse/dep5"; then cme check dpkg-copyright -file "${{ github.workspace }}/.reuse/dep5"; fi
 
   get-results:
     name: "Get results"
