@@ -28,16 +28,14 @@ jobs:
           # shellcheck-version: "v0.7.2"
           enable-all-opt-checks: "true"
           ignore-files: "gradlew|.gitlab-ci.yml"
-      # - name: "REUSE Compliance Check"
-        # uses: fsfe/reuse-action@v1
-    - name: "Test"
-      id: "my-test"
-      shell: bash
-      run: |
-        text='abc'
-        echo "::set-output name=my-test-text::${text}"
+      - name: "Test"
+        id: "my-test"
+        shell: bash
+        run: |
+          text='abc'
+          echo "::set-output name=my-test-text::${text}"
 
-        echo "${{ outputs.my-test-text }}"
+          echo "${{ outputs.my-test-text }}"
 
   get-results:
     name: "Get results"
