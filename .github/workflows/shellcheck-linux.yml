@@ -21,13 +21,6 @@ jobs:
         with:
           name: "Documentation"
           path: "documentation/"
-      - name: "ShellChecker"
-        id: "shellchecker-run"
-        uses: a5k-testing/github-action-test@main
-        with:
-          # shellcheck-version: "v0.7.2"
-          enable-all-opt-checks: "true"
-          ignore-files: "gradlew|.gitlab-ci.yml"
       - name: "Test"
         id: "my-test"
         shell: bash
@@ -36,6 +29,13 @@ jobs:
           echo "::set-output name=my-test-text::${text}"
 
           echo "${{ steps.my-test.outputs.my-test-text }}"
+      - name: "ShellChecker"
+        id: "shellchecker-run"
+        uses: a5k-testing/github-action-test@main
+        with:
+          # shellcheck-version: "v0.7.2"
+          enable-all-opt-checks: "true"
+          ignore-files: "gradlew|.gitlab-ci.yml"
 
   get-results:
     name: "Get results"
