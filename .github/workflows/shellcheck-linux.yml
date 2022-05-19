@@ -35,7 +35,7 @@ jobs:
           text='abc'
           echo "::set-output name=my-test-text::${text}"
 
-          echo "${{ outputs.my-test-text }}"
+          echo "${{ steps.my-test.outputs.my-test-text }}"
 
   get-results:
     name: "Get results"
