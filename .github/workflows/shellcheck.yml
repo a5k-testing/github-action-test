@@ -34,7 +34,7 @@ jobs:
       id: "my-test"
       shell: bash
       run: |
-        text=abc
+        text='abc'
         echo "::set-output name=my-test-text::${text}"
 
         echo "${{ outputs.my-test-text }}"
