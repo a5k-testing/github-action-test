@@ -45,7 +45,7 @@ jobs:
         with:
           # shellcheck-version: "v0.7.2"
           enable-all-opt-checks: "true"
-          ignore-files: "gradlew|.gitlab-ci.yml|test-123"
+          ignore-files: "gradlew|.gitlab-ci.yml|test-12"
 
   get-results:
     name: "Get results"
