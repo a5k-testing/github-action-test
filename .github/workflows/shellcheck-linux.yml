@@ -61,6 +61,7 @@ jobs:
           count="${{ needs.shellchecker.outputs.num-files-wth-issues }}"
           if test -n "${count?}"; then echo "${count}"; fi
       - name: Display list of files with issues
+        if: github.ref == "refs/heads/main"
         shell: bash
         run: |
           # List:
