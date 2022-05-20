@@ -21,8 +21,8 @@ jobs:
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v3
-        # with:
-          # repository: "micro5k/microg-unofficial-installer"
+        with:
+          repository: "micro5k/microg-unofficial-installer"
           # ref: "26a99ae486dd92e3438a4f82e8415bd49336cfd7"
       - uses: actions/upload-artifact@v3
         with:
