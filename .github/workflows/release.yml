@@ -31,6 +31,8 @@ jobs:
       - name: "Upload release"
         uses: ncipollo/release-action@v1
         with:
+          allowUpdates: true
+          artifactErrorsFailBuild: true
           artifacts: "TEST*"
-          # bodyFile: "body.md"
+          replacesArtifacts: false
           # token: ${{ secrets.GITHUB_TOKEN }}
