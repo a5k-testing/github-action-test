@@ -27,7 +27,7 @@ jobs:
         shell: bash
         run: |
           # Building...
-          ./gradlew buildOtaOSS
+          # ./gradlew buildOtaOSS
       - name: "Upload release"
         uses: ncipollo/release-action@v1
         with:
