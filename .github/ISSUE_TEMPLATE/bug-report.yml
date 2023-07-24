@@ -21,7 +21,7 @@ body:
     attributes:
       label: Version
       description: What version of our software are you running?
-      placeholder: Example: v0.2.23.212658
+      placeholder: "Example: v0.2.23.212658"
     validations:
       required: true
   - type: textarea
