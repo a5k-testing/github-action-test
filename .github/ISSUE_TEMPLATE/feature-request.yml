@@ -1,0 +1,37 @@
+---
+# SPDX-FileCopyrightText: none
+# SPDX-License-Identifier: CC0-1.0
+
+name: Feature request
+description: Suggest a new feature for this project
+labels: ["enhancement", "needs triage"]
+assignees:
+  - ale5000-git
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request!
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: I made sure that there were *no existing issues* already.
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature description
+      description: Explain in detail the function you would like to have.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What version of our software are you running?
+      placeholder: "e.g. v0.2.23.212658"
+    validations:
+      required: true
