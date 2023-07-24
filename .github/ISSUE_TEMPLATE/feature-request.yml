@@ -28,11 +28,3 @@ body:
       description: Explain in detail the feature you would like to have.
     validations:
       required: true
-  - type: input
-    id: version
-    attributes:
-      label: Version
-      description: What version of our software are you running?
-      placeholder: "e.g. v0.2.23.212658"
-    validations:
-      required: true
