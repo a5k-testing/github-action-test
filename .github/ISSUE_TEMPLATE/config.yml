@@ -5,5 +5,5 @@
 blank_issues_enabled: false
 contact_links:
   - name: ❓ Question
-    url: ../../../discussions/new/choose
+    url: https://github.com/a5k-testing/github-action-test/discussions/new/choose
     about: Ask about anything
