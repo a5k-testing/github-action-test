@@ -17,7 +17,7 @@ body:
     attributes:
       label: Checklist
       options:
-        - label: I made sure that there were *no existing [issues](../issues)* already.
+        - label: I made sure that there were *[no existing issues](../issues)* already.
           required: true
   - type: textarea
     id: feature-description
