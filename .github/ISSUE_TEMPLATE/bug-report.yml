@@ -41,9 +41,11 @@ body:
       label: Custom ROM
       description: What ROM are you using?
       placeholder: "e.g. LineageOS 17.1"
+    validations:
+      required: true
   - type: textarea
     id: logs
     attributes:
-      label: Relevant log output
+      label: Relevant logcat output
       description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
-      render: logcat
+      render: log
