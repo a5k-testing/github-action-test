@@ -13,12 +13,11 @@ body:
       value: |
         Thanks for taking the time to fill out this feature request!
   - type: checkboxes
-    id: terms
+    id: checklist
     attributes:
-      label: Code of Conduct
-      description: I made sure that there were *no existing issues* already.
+      label: Checklist
       options:
-        - label: I agree to follow this project's Code of Conduct
+        - label: I made sure that there were *no existing issues* already.
           required: true
   - type: textarea
     id: feature-description
