@@ -39,7 +39,7 @@ body:
     id: custom-rom
     attributes:
       label: Custom ROM
-      description: What ROM do you use?
+      description: What ROM are you using?
       placeholder: "e.g. LineageOS 17.1"
   - type: textarea
     id: logs
