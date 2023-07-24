@@ -2,7 +2,7 @@
 # SPDX-FileCopyrightText: none
 # SPDX-License-Identifier: CC0-1.0
 
-name: 🐞 Bug report
+name: "🐞 Bug report"
 description: Report a bug to help us improve
 labels: ["bug", "needs triage"]
 assignees:
