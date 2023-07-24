@@ -25,7 +25,7 @@ body:
     id: feature-description
     attributes:
       label: Feature description
-      description: Explain in detail the function you would like to have.
+      description: Explain in detail the feature you would like to have.
     validations:
       required: true
   - type: input
