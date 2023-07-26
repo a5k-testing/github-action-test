@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 name: "🐞 Bug report"
-description: Report a bug to help us improve
+description: Report a bug to help improve this software.
 labels: ["bug", "needs triage"]
 assignees:
   - ale5000-git
@@ -24,7 +24,7 @@ body:
     attributes:
       label: Version
       description: What version of our software are you running?
-      placeholder: "e.g. v0.2.23.212658"
+      placeholder: "e.g. 0.2.23.212658"
     validations:
       required: true
   - type: input
@@ -46,6 +46,6 @@ body:
   - type: textarea
     id: logs
     attributes:
-      label: Relevant logcat output
+      label: Relevant log output
       description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
       render: log
