@@ -9,8 +9,8 @@
     android:viewportWidth="24.0"
     android:viewportHeight="24.0">
     <group
-        android:translateX="40.635"
-        android:translateY="40.635"
+        android:translateX="20.635"
+        android:translateY="20.635"
         android:scaleX="6.0"
         android:scaleY="6.0">
         <path
@@ -21,8 +21,8 @@
     <group
         android:scaleX="0.40"
         android:scaleY="0.40"
-        android:translateX="67.581"
-        android:translateY="67.581">
+        android:translateX="47.581"
+        android:translateY="47.581">
         <path
             android:pathData="m151.55,151.53a55,55 0,0 1,-66.39 8.74"
             android:strokeAlpha="0.8"
